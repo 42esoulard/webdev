@@ -1,0 +1,88 @@
+--------> BASIC ELEMENTS
+
+<!DOCTYPE html>
+<head>
+    write metadata elements here
+</head>
+<body>
+    <h1> title </h1>
+    <div>
+        <h2> second level </h2>
+        <p> paragraph </p>
+    </div>
+</body>
+</html>
+
+<!--
+    comment
+-->
+
+Elements:
+main, header, footer, nav, video, article, section, div
+ex: 
+<main>
+    <h1>title</h1>
+    <p>paragraph</p>
+</main>
+div: general purpose container
+
+
+Image:
+<img src="https://www.freecatphotoapp.com/your-image.jpg" alt="text if img is unavailable">
+
+Link:
+<a href="https://www.freecodecamp.org">text displayed for link</a>
+Internal link:
+<a href="#contacts-header">Contacts</a>
+...
+<h2 id="contacts-header">Contacts</h2>
+Nested link:
+<p>
+    Here's a <a target="_blank" href="https://www.freecodecamp.org"> nested link to www.freecodecamp.org</a> for you to follow.
+</p>
+Dead link:
+<a href="#">Dead link</a>
+Image is a link:
+<a href="#"><img src="https://www.bit.ly/fcc-running-cats" alt="Three kittens running towards the camera."></a>  
+
+--------> LISTS
+unordered list:
+<ul>
+    <li>milk</li>
+    <li>cheese</li>
+  </ul>
+  
+ordered list:
+  <ol>
+    <li>Garfield</li>
+    <li>Sylvester</li>
+  </ol>
+
+--------> WEB FORMS
+web form: allow a user to input text 
+<input type="text">
+<input type="text" placeholder="this is what's shown before input">
+form element: submit data straight to the server
+<form action="/url-where-you-want-to-submit-form-data">
+    <input>
+    <button type="submit">this button submits the form</button>
+</form>
+make input compulsory:
+<input type="text" required>
+
+radio buttons: here a pair of two buttons of the same group (same name)
+                value is what is sent to the server
+<label for="indoor"> 
+    <input id="indoor" type="radio" name="indoor-outdoor" value="indoor">Indoor 
+</label>
+<label for="outdoor"> 
+    <input id="outdoor" type="radio" name="indoor-outdoor" value="outdoor">Outdoor 
+</label>
+
+checkboxes: here a set of checkboxes of the same group (same name)
+<label for="loving"><input id="loving" type="checkbox" name="personality" value="lo"> Loving</label>
+<label for="blunt"><input id="blunt" type="checkbox" name="personality" value="bl"> Blunt</label>
+<label for="gooey"><input id="gooey" type="checkbox" name="personality" value="go"> Gooey</label>
+check a checkbox or radio button by default:
+<label for="loving"><input checked id="loving" type="checkbox" name="personality" value="lo"> Loving</label>
+
