@@ -1,0 +1,181 @@
+--------> DIFFERENT SCOPES
+
+change element style in html file (just one element): 
+<h2 style="color: blue;">CatPhotoApp</h2>
+change element style in the css file (all h2 elements):
+<style>
+  h2 {
+    color: red;
+  }
+</style>
+
+change the whole page's elements' style by applying it to body: 
+body {
+    background-color: black;
+    color: green;
+    font-family: monospace;
+  }
+(a parent's styles are inherited by its children but can be overwritten 
+lower down the hierarchy. Declarations are read from top to bottom and the last 
+one will be applied. Except for ID styling which overwrites all.)
+if you wanna be sure that a style's characteristic will be prioritized, add important: 
+.red-text {
+    color: red !important;
+}
+
+change element style by type: (here, all radio buttons)
+in html: 
+<label><input type="radio" name="indoor-outdoor"> Outdoor</label><br>
+in css:
+[type='radio'] {
+    margin: 20px 0px 20px 0px;
+}
+
+Class: (can be used on any element)
+<style>
+  .blue-text {
+    color: blue;
+  }
+</style>
+in html: 
+<h2 class="blue-text">CatPhotoApp</h2>
+
+Id: (just the one element with this particular id)
+in html:
+<h2 id="cat-photo-app">Blabla</h2>
+in css: 
+#cat-photo-app {
+    background-color: green;
+}
+
+Two elements at once:
+aside, section {
+  padding: 2px;
+  background-color: #ccc;
+}
+
+--------> VARIABLES
+Defined higher in a class in the file. Must have a default backup value
+.penguin {
+    --penguin-skin: black;
+}
+.penguin-top {
+    top: 10%;
+    left: 25%;
+    background: var(--penguin-skin, gray);with backup
+    //or 
+    background: black;//with backup before
+    background: var(--penguin-skin);
+}
+
+Globals: 
+:root {
+    --global-var: black;
+  }
+(note: they can be modified within elements)
+
+--------> MEDIA QUERIES
+Conditional bits of code (ex: global will be modified only if screen width is < 350px)
+:root {
+    --global-var: green;
+}
+@media (max-width: 350px) {
+    :root {
+      --global-var: black;
+    }
+  }
+
+--------> COLOR FORMAT
+All colors can be written by their name, or in hexa, or as rgb value
+color: #000000;
+color: black;
+color: rgb(0, 0, 0);
+color: rgba(200, 200, 200, 0.5); //a is opacity
+
+--------> SIZE FORMAT
+instead of px, we can use em which is relative to the element font size (ex 1.5em =
+1.5*font size)
+font-size: 30px;
+border-width: 1.2em;
+
+--------> FONT PARAMETERS
+
+font parameters (size in pixels, family (=which font),)
+h1 {
+    font-size: 30px;
+    font-family: sans-serif;
+  }
+
+import a font from google fonts(https://fonts.google.com/): 
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+
+specify a backup font if the first one is unavailable: 
+p {
+    font-family: Helvetica, sans-serif;
+  }
+  
+--------> IMAGE PARAMETERS
+
+Two classes to apply different size settings to images:
+<style>
+  .larger-image {
+    width: 500px;
+  }
+  .smaller-image {
+    width: 100px;
+  }
+</style>
+
+--------> ELEMENT BORDERS PARAMETERS
+
+.thin-red-border {
+    border-color: red;
+    border-width: 5px;
+    border-style: solid;
+    border-radius: 10px; //gives the border rounded corners
+    //border-radius: 50%; //can take px or %, in this case it makes the border round
+  }
+
+--------> ELEMENT BACKGROUND PARAMETERS
+
+  .green-background {
+    background-color: green;
+  }
+  
+--------> PADDING, BORDER AND MARGIN
+  Padding: amount of space between the element's content and its border
+  .yellow-box {
+    background-color: yellow;
+    padding: 10px;
+  }
+  can be different on each side: 
+  .red-box {
+    background-color: crimson;
+    color: #fff;
+    padding-top: 40px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 40px;
+  }
+  or clockwise notation (top right bottom left): 
+  padding: 10px 20px 10px 20px;
+
+  Margin: amount of space between an element's border and surrounding elements.
+  .blue-box {
+    background-color: blue;
+    color: #fff;
+    padding: 20px;
+    margin: 10px;
+  }
+  (a negative margin makes the element bigger)
+  can be different on each side: s
+  .red-box {
+    background-color: crimson;
+    color: #fff;
+    margin-top: 40px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-left: 40px;
+  }
+  or clockwise notation (top right bottom left): 
+  margin: 10px 20px 10px 20px;

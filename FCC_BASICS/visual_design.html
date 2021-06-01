@@ -1,0 +1,203 @@
+--------> TEXT 
+    text-align: justify; // right/left/center
+    font-size: 27px;
+bold text in css:
+    font-weight: bold; //bold text. Or can be a value from 100 to 1000
+or in html: 
+    <p>blabla <strong>bla</strong></p>
+
+Text transform:
+    text-transform: lowercase; //uppercase/capitalize/initial(=default)/inherit(=parent value)
+
+Space between lines:
+    line-height: 25px;
+
+underline:
+    text-decoration: underline; 
+or
+    <p>blabla <u>bla</u></p>
+
+italic:
+    text-decoration: italic; 
+or
+    <p>blabla <em>bla</em></p>
+
+striked text:
+    text-decoration: line-through;; 
+or
+    <p>blabla <s>bla</s></p>
+
+--------> SIZE OF THE ELEMENT
+    width: 5em;
+    height: 20px;
+
+    p:hoover {
+        transform: scale(2); // doubles element size upon hoovering
+      }
+    Skew element on its axis:  
+        transform: skewX(-32deg);
+        transform: skewY(-3deg);
+      
+
+--------> DECORATION
+horizontal line in html:
+    <hr>
+
+box shadow: add a shadow to element box
+(offset-x, offset-y, blur-radius, spread-radius, color)
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
+--------> PSEUDO-CLASSES
+Depend on the state of an element.
+a:hover {
+    color: red;
+  }
+  
+--------> ELEMENT POSITION
+Relative:
+    If relative, is set relatively to the element (here, 10px further from 
+    bottom). It is an OFFSET (it moves the element away from the other element)
+    (or top/left/right).
+    The document's normal flow is maintained and other elements will be 
+    moved as well.
+        p {
+            position: relative;
+            bottom: 10px;
+        }
+
+Absolute:
+    Locks the elements to its closest positioned ancestor (parent must
+    have position: relative;). Will be ignored by other elems, element
+    is removed from the normal flow
+    #searchbar {
+        position: relative;
+        top: 10px;
+        right: 10px;
+    }
+
+    Fixed:
+        like absolute, but element doesn't even move when scrolling
+    #navbar {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+    }   
+
+Float: left or right. Pushed element to that side.
+#right {
+    float: right;
+    width: 50%;
+  }
+
+Order overlapping elements: z-index 
+    #bla {
+        z-index: 2;
+    }
+    #blou {
+        z-index: 1;
+    }
+
+Center element:
+    margin: auto; //works for images too, by adding displauy: block; so they're treated as a block
+
+--------> COLOR
+hsl(degree, saturation, lightness) 
+(degree is on the color wheel, ex 170)
+    background-color: hsl(180, 90%, 35%);
+
+Gradient: (direction in degrees, ex 68deg)
+    background: linear-gradient(gradient_direction, color 1, color 2, color 3, ...);
+
+Repeating gradient (ex: stripes)
+    repeating-linear-gradient(
+        90deg, //direction
+        yellow 0px,
+        blue 40px,
+        green 40px,
+        red 80px
+        );
+
+Set an image as background: 
+background: url(https://cdn-media-1.freecodecamp.org/imgr/MJAkxbh.png);
+
+--------> COLOR THEORY:
+Complementary colours pop.
+
+The split-complementary color scheme: starts with a base color, 
+then pairs it with the two colors that are adjacent to its 
+complement. The three colors provide strong visual contrast in a
+design, but are more subtle than using two complementary colors.
+
+--------> SHAPES:
+css can be used to make shapes, by modifying a box's appearance.
+
+::before and ::after are pseudo elements which add an element to an element.
+ex: heart {
+        blabla: shape;  
+    }
+    heart::before {
+        blabla: rectangle shape;
+    }
+
+--------> ANIMATIONS:
+
+Keyframes:
+    #anim {
+        animation-name: colorful;
+        animation-duration: 3s;
+        animation-fill-mode: forwards; //allows anim not to stop
+        animation-iteration-count: 3; //nb of iterations. Can be "infinite"
+        animation-timing-function: ease; //ease by default. can 
+            // be linear, ease-in, ease-out. (=type of movement acceleration)
+            //can be set to a bezier curve such as 
+            // animation-timing-function: cubic-bezier(0.25, 0.25, 0.75, 0.75);
+    }
+    
+    @keyframes colorful {
+        0% {//beginning of anim
+        background-color: blue;
+        }
+        100% {//end of anim
+        background-color: yellow;
+        }
+    }
+
+Can be used to change width of hoovered elem: 
+    <style>
+        img:hover {
+        animation-name: width;
+        animation-duration: 500ms;
+        }
+    
+        @keyframes width {
+            100% {
+                width: 40px;
+            }
+        }
+    </style>
+
+Move elem around and change its color:
+    @keyframes rainbow {
+        0% {
+            background-color: blue;
+            top: 0px;
+        }
+        50% {
+            background-color: green;
+            top: 50px;
+        }
+        100% {
+            background-color: yellow;
+            top: 0px;
+        }
+    }
+
+Fade elem as it moves:
+    @keyframes fade {
+        50% {
+        left: 60%;
+
+        }
+    }
+
+
