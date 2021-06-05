@@ -5,13 +5,16 @@
     write metadata elements here
 </head>
 <body>
+    <header>stuff on top of page</header>
     <h1> title </h1>
     <div>
         <h2> second level </h2>
         <p> paragraph </p>
     </div>
+    <footer>stuff on bottom of page</footer>
 </body>
 </html>
+Header levels should be hierarchical and logical (h1, then h2, etc)
 
 <!--
     comment
@@ -24,17 +27,39 @@ ex:
     <h1>title</h1>
     <p>paragraph</p>
 </main>
-div: general purpose container
+
 HTML markup should be organized and make sense when read from 
 top to bottom. This is how users with visual impairments (who 
 rely on assistive devices like screen readers) access your content.
-
+<main> - there should be only one per page. Shouldn't include repeated 
+content across pages
+<div> - groups content, general purpose container
+<section> - groups related content 
+<article> - groups independent, self-contained content
 
 Image:
 <img src="https://www.freecatphotoapp.com/your-image.jpg" alt="text if img is unavailable">
+Always add a relevant alt for accessibility, 
+but leave alt blank if image is purely decorative
+Add a caption to an image, diagram, or chart:
+  <figure>
+    <img src="roundhouseDestruction.jpeg" alt="Photo of Camper Cat executing a roundhouse kick">
+    <br>
+    <figcaption>
+      Master Camper Cat demonstrates proper form of a roundhouse kick.
+    </figcaption>
+  </figure>
+  
+Audio:
+  <audio id="meowClip" controls>
+    <source src="audio/meow.mp3" type="audio/mpeg">
+    <source src="audio/meow.ogg" type="audio/ogg">
+  </audio>
+  controls allow for keyboard accessibility. ogg are transcriptions for accessibility.
+  
 
 Link:
-<a href="https://www.freecodecamp.org">text displayed for link</a>
+go to <a href="https://www.freecodecamp.org">free code camp</a>
 Internal link:
 <a href="#contacts-header">Contacts</a>
 ...
@@ -47,6 +72,16 @@ Dead link:
 <a href="#">Dead link</a>
 Image is a link:
 <a href="#"><img src="https://www.bit.ly/fcc-running-cats" alt="Three kittens running towards the camera."></a>  
+Put relevant info as text! ie not this: <a href="">Click here</a>
+
+nav: contains main navigation links of the website
+  <nav>
+    <ul>
+      <li><a href="#stealth">Stealth &amp; Agility</a></li>
+      <li><a href="#combat">Combat</a></li>
+      <li><a href="#weapons">Weapons</a></li>
+    </ul>
+  </nav>
 
 --------> LISTS
 unordered list:
@@ -72,7 +107,12 @@ form element: submit data straight to the server
 </form>
 make input compulsory:
 <input type="text" required>
-
+add a label (text associated with the form to make it more understandable):
+  <form>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name">
+  </form>
+  
 radio buttons: here a pair of two buttons of the same group (same name)
                 value is what is sent to the server
 <label for="indoor"> 
@@ -81,6 +121,19 @@ radio buttons: here a pair of two buttons of the same group (same name)
 <label for="outdoor"> 
     <input id="outdoor" type="radio" name="indoor-outdoor" value="outdoor">Outdoor 
 </label>
+group radio buttons with fieldset:
+  <form>
+    <fieldset>
+      <legend>Choose one of these three items:</legend>
+      <input id="one" type="radio" name="items" value="one">
+      <label for="one">Choice One</label><br>
+      <input id="two" type="radio" name="items" value="two">
+      <label for="two">Choice Two</label><br>
+      <input id="three" type="radio" name="items" value="three">
+      <label for="three">Choice Three</label>
+    </fieldset>
+  </form>
+  
 
 checkboxes: here a set of checkboxes of the same group (same name)
 <label for="loving"><input id="loving" type="checkbox" name="personality" value="lo"> Loving</label>
@@ -88,4 +141,16 @@ checkboxes: here a set of checkboxes of the same group (same name)
 <label for="gooey"><input id="gooey" type="checkbox" name="personality" value="go"> Gooey</label>
 check a checkbox or radio button by default:
 <label for="loving"><input checked id="loving" type="checkbox" name="personality" value="lo"> Loving</label>
+
+date form:
+<label for="input1">Enter a date:</label>
+<input type="date" id="pickdate" name="date">
+standardize datetime for accessibility:
+<p>blabla happened <time datetime="2013-02-13">last Wednesday</time>, and it was cool</p>
+
+set a keyboard shortcut on any element for accessibility with accesskey:
+<button accesskey="b">Important Button</button>
+make tab pass at a particular element (and order them):
+<div tabindex="0">I need keyboard focus!</div>
+<div tabindex="1">I need keyboard focus!</div>
 

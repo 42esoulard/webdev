@@ -40,6 +40,13 @@ Class: (can be used on any element)
 in html: 
 <h2 class="blue-text">CatPhotoApp</h2>
 
+Class in a certain context:
+<style>
+  header .blue-text {
+    color: blue;
+  }
+</style>
+
 Id: (just the one element with this particular id)
 in html:
 <h2 id="cat-photo-app">Blabla</h2>
@@ -179,3 +186,17 @@ Two classes to apply different size settings to images:
   }
   or clockwise notation (top right bottom left): 
   margin: 10px 20px 10px 20px;
+
+--------> ACCESSIBILITY: HIDE CONTENT
+  visually hide content meant only for screen readers. This happens when information 
+  is in a visual format (like a chart), but screen reader users need an alternative 
+  presentation (like a table):
+    .sr-only {
+      position: absolute;
+      left: -10000px;
+      width: 1px;
+      height: 1px;
+      top: auto;
+      overflow: hidden;
+    }
+  

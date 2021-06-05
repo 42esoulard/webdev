@@ -1,0 +1,55 @@
+
+to use other flex properties of an element, first add:
+display: flex;
+
+order children of an element:
+    <style>
+    #box-container {
+        display: flex;
+        height: 500px;
+        flex-direction: row; (or column/row-reverse/column-reverse)
+    }
+    #box-1 {
+        background-color: dodgerblue;
+        width: 50%;
+        height: 50%;
+    }
+
+    #box-2 {
+        background-color: orangered;
+        width: 50%;
+        height: 50%;
+    }
+    </style>
+
+    <div id="box-container">
+    <div id="box-1"></div>
+    <div id="box-2"></div>
+    </div>
+
+justify-content:
+    flex-start: aligns items to the start of the flex container. For a row, this pushes the items to the left of the container. For a column, this pushes the items to the top of the container. This is the default alignment if no justify-content is specified.
+    flex-end: aligns items to the end of the flex container. For a row, this pushes the items to the right of the container. For a column, this pushes the items to the bottom of the container.
+    space-between: aligns items to the center of the main axis, with extra space placed between the items. The first and last items are pushed to the very edge of the flex container. For example, in a row the first item is against the left side of the container, the last item is against the right side of the container, then the remaining space is distributed evenly among the other items.
+    space-around: similar to space-between but the first and last items are not locked to the edges of the container, the space is distributed around all the items with a half space on either end of the flex container.
+    space-evenly: Distributes space evenly between the flex items with a full space at either end of the flex container
+align-items: same as for justify-content but for the secondary axis (ex:
+row if the flex-direction is column)
+align-self: used for a child to overwrite align-items. takes the same properties
+
+
+flex-wrap: property tells CSS to wrap items. This means extra items move into a new row or column. The break point of where the wrapping happens depends on the size of the items and the size of the container.
+(nowrap by default, or wrap top to bottom, or wrap-reverse)
+
+flex-shrink: allows an item to shrink if the flex container is too small.
+if one item has a flex-shrink value of 1 and the other has a flex-shrink value of 3, the one with the value of 3 will shrink three times as much as the other.
+flex-grow: the opposite. 
+if one item has flex-grow value of 1 and the other has a flex-grow value of 3, the one with the value of 3 will grow three times as much as the other.
+flex-basis: specifies initial size of the item before CSS makes adjustments with flex-shrink or flex-grow.
+
+All of these combined:
+flex: 1 0 10px; 
+will set the item to flex-grow: 1;, flex-shrink: 0;, and flex-basis: 10px;.
+default is flex: 0 1 auto;
+
+order: how flex item appear in the container (ex order: 1; order: 3).. if the default html order doesnt satisfy us

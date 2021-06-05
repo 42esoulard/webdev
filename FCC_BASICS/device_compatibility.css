@@ -1,0 +1,29 @@
+
+make font size change depending on device size:
+    @media (max-width: 100px) { 
+        font-size: 10px;
+    }
+
+    @media (min-height: 350px) {
+        font-size: 12px;
+    }
+
+make image adapt to device: 
+    img {
+        max-width: 100%;
+        height: auto; //height will keep its original ratio
+    }
+
+keep images size at half of its original values to maintain quality::after<style>
+    <style>
+        img { height: 250px; width: 250px; }
+    </style>
+    <img src="coolPic500x500" alt="A most excellent picture">
+
+set sizes as a percentage of the display size:
+vw (viewport width): 10vw would be 10% of the viewport's width.
+vh (viewport height): 3vh would be 3% of the viewport's height.
+vmin (viewport minimum): 70vmin would be 70% of the viewport's smaller dimension (height or width).
+vmax (viewport maximum): 100vmax would be 100% of the viewport's bigger dimension (height or width).
+ex:
+    body { width: 30vw; }
