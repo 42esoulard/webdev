@@ -1,0 +1,106 @@
+turn parent into a grid container:
+    display: grid;
+
+add columns and rows to grid: 
+    grid-template-columns: 50px 50px;
+    grid-template-rows: 100px 100px 100px;
+
+other units can be used to set columns and rows size:
+    fr: sets the column or row to a fraction of the available space,
+    auto: sets the column or row to the width or height of its content automatically,
+    %: adjusts the column or row to the percent width of its container.
+
+add gap between columns or rows:
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    grid-gap: 10px; //adds gap between rows AND columns
+    grid-gap: 10px 20px; //adds 10px gap between rows AND 20px gap between columns
+
+object position on grid:
+    grid-column: 1 / 3;
+(This will make the item start at the first vertical line of the grid on the left and 
+span to the 3rd line of the grid, consuming two columns.)
+Same for rows:
+    grid-row: 2 / 5;
+
+A cell is the space in the grid an object has.
+justify-self: horizontal alignement property on a grid item. By default, this property 
+has a value of stretch.
+align-self: same vertically
+    stretch: make the content fill the whole width of the cell.
+    start: aligns the content at the left of the cell,
+    center: aligns the content in the center of the cell,
+    end: aligns the content at the right of the cell.
+
+for all items of a container
+justify-items on your grid container. Accepts all the previous params (stretch, start, 
+center, end)
+align-items: same, vertically.
+
+group cells of your grid together into an area and give the area a custom name. 
+Do this by using grid-template-areas on the container like this:
+    grid-template-areas:
+    "header header header"
+    "advert content content"
+    "footer footer footer";
+
+place an item in a grid area:
+    .item1 {
+        grid-area: header;
+    }
+  
+or define an area for an object: 
+    item1 { grid-area: 1/1/2/4; }
+    (horizontal line to start at / vertical line to start at / horizontal line to end 
+    at / vertical line to end at;)
+
+create lots of rows/columns
+ex:create the 100 row grid, each row at 50px tall.
+    grid-template-rows: repeat(100, 50px);
+ex: grid-template-columns: 1fr 50px 1fr 50px 20px; can also be written as:
+    grid-template-columns: repeat(2, 1fr 50px) 20px;
+
+define a minimum and maximum size instead of a fixed one (will change depending on the window)
+    grid-template-columns: 100px minmax(50px, 200px);
+In the code above, grid-template-columns is set to create two columns; the first is 100px 
+wide, and the second has the minimum width of 50px and the maximum width of 200px.
+
+autofill:
+insert as many rows or columns of your desired size as possible depending on the size of 
+the container. You can create flexible layouts when combining auto-fill with minmax, like this:
+    repeat(auto-fill, minmax(60px, 1fr));
+(When the container changes size, this setup keeps inserting 60px columns and stretching 
+them until it can insert another one.)
+
+autofit:
+when the container's size exceeds the size of all the items combined, auto-fill keeps 
+inserting empty rows or columns and pushes your items to the side, while auto-fit 
+collapses those empty rows or columns and stretches your items to fit the size of the 
+container.
+
+media query to rearrange items depending on window size:
+    @media (min-width: 300px){
+        .container{
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas:
+            "advert header"
+            "advert content"
+            "advert footer";
+        }
+    }
+
+    @media (min-width: 400px){
+        .container{
+        grid-template-areas:
+            "header header"
+            "advert content"
+            "footer footer";
+        }
+    }
+
+inception:
+you can have a grid within a grid, ie a grid element can also contain a grid itself.
+Turning an element into a grid only affects the behavior of its direct descendants. 
+So by turning a direct descendant into a grid, you have a grid within a grid.
+You just need to set its display and grid-template-columns properties.
