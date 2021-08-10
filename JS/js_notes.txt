@@ -1,0 +1,126 @@
+console.log():print something to the developer console in your browser.
+alert(): prompts a pop up
+
+---------------------------
+        VARIABLES
+---------------------------
+
+Declaring a variable:
+    var msg = 'hello';
+    let bla = 'blou';
+(var and let are more or less the same,
+prefer let if possible)
+var and let can be modified:
+    msg = bla;
+    bla = 'bipbip';
+Declaring a const variable (can be reassigned):
+    const myBirthday = '18.04.1982';
+
+variable names a case sensitive.
+Convention for long names: myVeryLongName
+
+Make it compatible with older JS by adding:
+    "use strict";
+
+We can initialise constants like macros (CAPITALIZE 
+THEM if they are calculated BEFORE RUNTIME):
+    const COLOR_ORANGE = "#FF7F00";
+    let color = COLOR_ORANGE;
+
+---------------------------
+          NUMBERS
+---------------------------
+
+There's only one numeric type : 64bit floating point.
+(This format stores numbers in 64 bits, where the number (the fraction) 
+is stored in bits 0 to 51, the exponent in bits 52 to 62, and the sign in bit 63)
+This is all ok:
+    let x = 3.14;
+    let y = 3;
+    let z = 123e-5
+
+Integers are accurate up to 15 digits.
+Floats can have 17 decimals, but not 100% accurate.
+(to remedy to this, multiply them to round them to an int 
+before working on them, ie: 
+    instead of 
+        let x = 0.2 + 0.1;
+    do
+        let x = (0.2 * 10 + 0.1 * 10) / 10;
+)
+
+------> + IS WEIRD WITH NUMBERS AND STRINGS:
+
+If both variables are numbers, they are added.
+    let x = 10;
+    let y = 20;
+    let z = x + y; //z == 30
+Else, whether it's 2 strings or a number and
+a string, they are concatenated:
+    let x = 10;
+    let y = "20";
+    let z = x + y; //z == 1020
+Operations are left to right, so:
+    let x = 10;
+    let y = 20;
+    let z = "30";
+    let a = x + y + z; //a == 3030
+
+With other operations (/ * -), strings are
+automatically converted to numbers if possible
+    let x = "100";
+    let y = 10;
+    let z = x / y; //z == 10;
+if it can't, the result will be NaN (Not a Number)
+isNaN(): to check if the value is a number
+
+Infinity and -Infinity: if the calculated number
+is outside of the largest possible number scope 
+(or if you divide by 0)
+
+Base conversion with .toString(base):
+    let myNumber = 32;
+    myNumber.toString(10);  // returns 32
+    myNumber.toString(32);  // returns 10
+
+We can initialize a number as an object with 
+new (DONT DO IT, ITS SLOW):
+    let y = new Number(123);
+
+------> == and ===
+== checks value equality
+=== checks type and value equality
+    let x = 500;             
+    let y = new Number(500);    
+    //(x == y) returns true
+    //(x === y) returns false
+/!\ OBJECTS CANNOT BE COMPARED
+
+------> Check a variable's type:
+typeof x; //returns the type of x (number or
+string or object)
+
+------> List of operators:
++ - / * += -= *= /= 
+% (modulo)
+++ (increment)
+-- (decrement)
+** (exponentiation, power, ex x**2)
+
+Precedence: * and / have higher precedence
+than + and - (they are calculated before),
+except if we add parentheses (like regular
+mathematics)
+
+Assignement:
+We wan chain them!
+    a = b = c = 2 + 2;
+
+------> USEFUL METHODS:
+toFixed(nb): nb is the nb of decimals you wanna keep 
+    let twoDecimalNumber = myLongDecimalNumber.toFixed(2);
+Number(myNumber): to use a string as a number
+An even better way to do that is to use +
+    let string = "2";
+    let str = "3";
+    alert( +string + +str) //5
