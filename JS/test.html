@@ -7,6 +7,9 @@
 <body>
   <script>
     // Your JavaScript goes here!
+
+    //------INITIAL MESSING AROUND
+
     // console.log("Hello, World!")
     // let msg ='hello';
     // alert(msg);
@@ -35,6 +38,25 @@
     // // console.log(flute * 7);
     // let flute = 7 * a;
     // console.log(flute);
+
+    //----------Conditions
+    let name = prompt("Who's there?");
+    if (name == "Admin") {
+      let password = prompt("Password?");
+      if (password == "TheMaster")
+        alert("Welcome!");
+      else if (password)
+        alert("Wrong password");
+      else
+        alert("Canceled");
+    }
+    else if (name)
+      alert("I don't know you");
+    else
+      alert("Canceled");
+
+    
+
   </script>
 </body>
 </html>

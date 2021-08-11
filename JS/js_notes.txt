@@ -124,3 +124,320 @@ An even better way to do that is to use +
     let string = "2";
     let str = "3";
     alert( +string + +str) //5
+nb.toString(): returns number as a string.
+
+
+---------------------------
+          STRINGS
+---------------------------
+
+Work the same as usual, a bit more laxist.
+This is ok:
+"blablabla"
+'blablabla'
+"i'm a blabla"
+'i said "you pop that gum one more time.."'
+'i\'d like a cherry cola please'
+
+prompt(): asks user for input and returns a string. 
+    button.onclick = function() {
+        let name = prompt('What is your name?');
+        alert('Hello ' + name + ', nice to see you!');
+    }
+
+Template literals: a string with backticks (`). Allows
+for inclusion of variables with placeholders ${} such as:
+    let output = `I like the song "${ song }". I gave it a score of ${ score/highestScore * 100 }%.`;
+It can include ternaries as well (that is dope):
+    let examScore = 45;
+    let examHighestScore = 70;
+    examReport = `You scored ${ examScore }/${ examHighestScore } (${ Math.round(examScore/examHighestScore*100) }%). ${ examScore >= 49 ? 'Well done, you passed!' : 'Bad luck, you didn\'t pass this time.' }`;
+
+----> String methods:
+length()
+
+slice(start, end) : extracts a part of a string and returns the extracted part in a new string.
+substring(start, end) : same, but doesn't accept negative indexes
+substr(start, length) : same but different length instead of end index
+
+replace(toReplace, newValue) : replaces the first occurence of a specified value with another value in a string, and returns the newly
+created string (doesn't change the string)
+to replace all occurences: text.replace(/Microsoft/g, "W3Schools");
+to make it case insensitive, use /i : text.replace(/MICROSOFT/i, "W3Schools");
+
+toUpperCase()
+toLowerCase()
+
+concat(text1, text2) : join 2 or more strings (same as + )
+
+trim() :removes whitespace from both sides of a string
+
+padStart(finalStrLength, char)
+padEnd(finalStrLength, char)
+Add padding to a string:
+    let text = "5";
+    text.padStart(4,0)    // Returns 0005 
+
+charAt(index): returns the character at a specified index (position) in a string:
+charCodeAt(index) : same but returns char value
+
+strings allow operator[] like text[0] (returns char at index 0), BUT:
+/!\ If no character is found, [ ] returns undefined, while charAt() returns an empty string.
+/!\ It is read only. str[0] = "A" gives no error (but does not work!)
+
+split(separator) : returns an array of strings.
+/!\ split() (without a separator): the whole string will be returned in index[0]
+/!\ split("") (separator is empty): each character of the string will be one index of the array
+So: to convert a string to an array, use str.split("");
+
+
+---------------------------
+        COMPARISONS
+---------------------------
+Return a boolean.
+Strings are compared letter by letter (ex: alert( 'Glow' > 'Glee' ); // true)
+True == 1, false == 0
+
+When comparing different types, comparison operators converts strings to numbers
+    let a = 0;
+    alert( Boolean(a) ); // false
+    //false == 0
+
+    let b = "0";
+    alert( Boolean(b) ); // true
+    //here the unicode value of 0 is used
+
+    alert(a == b); // true!
+    //in a comparison, "0" is converted to a number, thus 0 == 0
+
+/!\ Since comparison operators convert strings to numbers, we can have funky stuff
+    alert( '' == false ); // true, empty string is converted to 0
+To avoid this, use === to also take type into account (or !==)
+    alert( 0 === false ); // false, because the types are different
+
+-------> null and undefined
+alert( null == undefined ); // true
+alert( null === undefined ); // false
+
+In comparisons, null becomes 0 while undefined becomes NaN
+They are only equal to each other
+ex:
+    alert( null > 0 );  // (1) false, null treated as 0
+    alert( null == 0 ); // (2) false, null can only be == to undefined
+    alert( null >= 0 ); // (3) true, null treated as 0
+    alert( undefined > 0 ); // false, undefined treated as NaN
+    alert( undefined < 0 ); // false, undefined treated as NaN
+    alert( undefined == 0 ); // false, can only be == to null
+
+
+---------------------------
+        CONDITIONS
+---------------------------
+
+if {
+}
+else if {
+}
+else {
+}
+
+switch (expression) {
+  case choice1:
+    run this code
+    break;
+
+  case choice2:
+    run this code instead
+    break;
+
+  // include as many cases as you like
+
+  default:
+    actually, just run this code
+}
+
+We can use several cases for a same block:
+switch (month) {
+    case 0:
+    case 1:
+    case 2:
+        console.log("Winter");
+        break;//0 1 and 2 will lead here
+
+ternary (only use them for assignations, not to replace a if, it's nasty):
+let bla = ( condition ) ? run this code : run this code instead
+
+-------> Logical operators
+They return a boolean.
+
+|| (OR):
+
+    Evaluates operands from left to right.
+    For each operand, converts it to boolean. If the result is true, stops and returns the original value of that operand.
+    If all operands have been evaluated (i.e. all were false), returns the last operand.
+
+    alert( true || true );   // true
+    alert( false || true );  // true
+    alert( true || false );  // true
+    alert( false || false ); // false
+
+    let firstName = "";
+    let lastName = "";
+    let nickName = "SuperCoder";
+    alert( firstName || lastName || nickName || "Anonymous");
+    //If all variables were falsy, "Anonymous" would show up.
+
+    If a true value is found, the others aren't evaluated.
+
+&& (AND):
+
+    Evaluates operands from left to right.
+    For each operand, converts it to a boolean. If the result is false, stops and returns the original value of that operand.
+    If all operands have been evaluated (i.e. all were truthy), returns the last operand.
+
+    alert( true && true );   // true
+    alert( false && true );  // false
+    alert( true && false );  // false
+    alert( false && false ); // false
+
+    The precedence of AND && operator is higher than OR ||.
+    So the code a && b || c && d is essentially the same as 
+    if the && expressions were in parentheses: (a && b) || (c && d).
+
+! (NOT):
+
+    alert( !true ); // false
+    alert( !0 ); // true
+
+    A double NOT !! inverts it:
+    alert( !!true ); // true
+
+?? (Nullish Coalescing)
+
+
+---------------------------------------------------------------
+
+https://developer.chrome.com/docs/devtools/
+
+In the Sources panel,
+You can add breakpoints, conditional breakpoints..
+Just check this, ok ? https://developer.chrome.com/docs/devtools/javascript/reference/
+
+
+---------------------------
+        DEBUGGING
+---------------------------
+
+console.assert(condition, variables)
+Writes an error to the console when condition evaluates to false.
+Prints the values of the variables listed (several with {var1, var2})
+
+console.count(label)
+Counts how many times count has been called with the same label (ex, "blabla").
+Can be called without a label. To reset the count: console.countReset([label]) 
+
+console.dir(object)
+Prints a JSON representation of the object.
+
+console.dirxml(node)
+prints the XML representation of the descendants of the node (head, body..)
+
+console.error(object [, object, ...])
+Prints object to the Console, formats it as an error, and includes a stack trace.
+
+console.group(label)
+Visually groups messages under the label together until console.groupEnd(label) is called. 
+Use console.groupCollapsed(label) to collapse the group when it's initially logged to the Console.
+
+console.info(object [, object, ...])
+console.log(object [, object, ...])
+console.debug(object [, object, ...])
+Are all the same. Output smth on the console.
+
+console.table(array)
+Logs an array of objects as a table and outputs it in an awesome way.
+    console.table([
+    {
+        first: 'René',
+        last: 'Magritte',
+    },
+    {
+        first: 'Chaim',
+        last: 'Soutine',
+        birthday: '18930113',
+    },
+    {
+        first: 'Henri',
+        last: 'Matisse',
+    }
+    ]);
+
+console.time([label])
+Starts a new timer. Call console.timeEnd([label]) to stop the timer and print the elapsed time to the Console.
+
+console.trace()
+Prints a stack trace to the Console.
+
+console.warn(object [, object, ...])
+Prints a warning to the Console.
+
+
+---------------------------
+    LIVE EXPRESSIONS
+---------------------------
+Pin an expression to the top of the console, and watch its value
+evolve in real time!
+Click the eye icon and enter the variable to check.
+
+---------------------------
+    FIND UNUSED CODE
+---------------------------
+From dev tools, ctrl shift p to open the command menu
+Show Coverage
+click the arrow thing
+code is analyzed as page is reloaded. You can click what's listed 
+to see which parts of the code are used or not
+
+---------------------------
+    THE CONSOLE: DOM
+---------------------------
+
+$_ : last evaluated expression
+$0 $1 $2 $3...: historic of evaluated expressions
+$(selector): ex $('img'), returns the first reference to the expression
+$$(selector): ex $$('img'), returns an array of all the references to the expression
+
+AND PLENTY OF OTHER STUFF THAT I DONT WANNA LOOK INTO RIGHT NOW
+CHECK https://developer.chrome.com/docs/devtools/console/utilities/ FOR REFERENCE
+
+
+---------------------------------------------------------------
+  CREATING A CSS GRID WITH DEVELOPPER TOOLS! THIS IS AWESOME!
+---------------------------------------------------------------
+
+https://www.youtube.com/watch?v=yznVkCuohGg
+
+In Elements tab, Layout. It shows the active grids and flexboxes, updatable in real time. 
+
+------------------------------------------------------------------------------------------
+
+---------------------------
+        FUNCTIONS
+---------------------------
+
+In JS, we can define anonymous functions because why the f not.
+Usually to respond to an event handler.
+    myButton.onclick = function() {
+        alert('hello');
+        // I can put as much code
+        // inside here as I want
+    }
+You can also assign an anonymous function to be the value of a variable, for example:
+    const myGreeting = function() {
+        alert('hello');
+    }
+    myGreeting();
+
+------> SCOPE: same as usual. The top level outside all your functions is called the 
+global scope. Values defined in the global scope are accessible from everywhere in the code.
+Variables defined in a function are only accessible within the function.
