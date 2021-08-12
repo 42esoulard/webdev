@@ -313,6 +313,11 @@ They return a boolean.
     alert( !!true ); // true
 
 ?? (Nullish Coalescing)
+    Check if value is either undefined or null 
+    function showCount(count) {
+        // if count is undefined or null, show "unknown"
+        alert(count ?? "unknown");
+    }
 
 
 ---------------------------------------------------------------
@@ -432,7 +437,8 @@ Usually to respond to an event handler.
         // I can put as much code
         // inside here as I want
     }
-You can also assign an anonymous function to be the value of a variable, for example:
+You can also assign an anonymous function to be the value of a variable: it's called a 
+function expression. For example:
     const myGreeting = function() {
         alert('hello');
     }
@@ -441,3 +447,65 @@ You can also assign an anonymous function to be the value of a variable, for exa
 ------> SCOPE: same as usual. The top level outside all your functions is called the 
 global scope. Values defined in the global scope are accessible from everywhere in the code.
 Variables defined in a function are only accessible within the function.
+
+------> If a function argument is not specified when called, it is defaulted to 
+"undefined". We can use this, because "undefined" is falsy :
+    function showMessage(from, text) {
+        text = text || 'empty';
+    }
+or
+    function showCount(count) {
+        // if count is undefined or null, show "unknown"
+        alert(count ?? "unknown");
+    }
+Like CPP, we can declare default values:
+    function showMessage(from, text = "no text given") {
+        alert( from + ": " + text );
+    }
+A default value can also be a function (which looks messy AF):
+    function showMessage(from, text = anotherFunction()) {
+        // anotherFunction() only executed if no text given
+        // its result becomes the value of text
+    }
+
+------> AS USUAL, MINIMIZE THE USE OF GLOBALS.
+------> AS USUAL, KEEP FUNCTIONS SHORT (1 function with a name describing what it does, 
+and does only this. Name should be starting with a verb - duh, it describes an action)
+
+------> FUNCTION EXPRESSIONS: 
+
+    function sayHi() {   // (1) create
+    alert( "Hello" );
+    }
+
+    let func = sayHi;    // (2) copy
+
+    func(); // Hello     // (3) run the copy (it works)!
+    sayHi(); // Hello    //     this still works too (why wouldn't it)
+    alert(sayHi); //no parentheses, shows the code of the function
+
+    /!\ Function Declarations (regular ones) can be called anywhere in the script, even 
+    before its line (its declaration is taken into account by the compiler)
+        Function Expressions (function put directly in a variable) are read at run time, and
+    thus cannot be called in advance or outside their scope.
+    Usually, prefer Function Declaration.
+
+------> ARROW FUNCTIONS:
+Is a shorter way to define a Function Expression. The return is implicit
+    let func = (arg1, arg2, ..., argN) => return
+Ex:
+    let addNumbers = (a, b) => a + b
+    let sayHi = () => alert('Hi!')
+    let addTwo = a => a + 2
+They can be used in ternaries:
+    let age = prompt("What is your age?", 18);
+    let welcome = (age < 18) ?
+        () => alert('Hello') :
+        () => alert("Greetings!");
+    welcome();
+We can also define multiline functions this way (but we need to explicitly return):
+    let sum = (a, b) => {  // the curly brace opens a multiline function
+        let result = a + b;
+        return result; // if we use curly braces, then we need an explicit "return"
+    };
+

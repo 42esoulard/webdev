@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+      let add7 = number => number + 7;
+      let multiply = (a, b) => a * b; 
+      function capitalize(string) {
+
+        if (string.length < 1)
+            return string;
+
+        let strArray = string.split('');
+        strArray[0] = strArray[0].toUpperCase();
+        string = strArray.join('')
+        return string;
+      }
+      let lastLetter = function(string) {
+        if (string.length < 1)
+            return string.charAt(0);
+        return string.charAt(string.length - 1);
+      }
+
+      console.log(add7(0));
+      console.log(add7(10));
+      console.log(add7(-5));
+
+      console.log(multiply(0, 61));
+      console.log(multiply(10, 10));
+      console.log(multiply(-5, 2));
+
+      console.log(capitalize(''));
+      console.log(capitalize('omg'));
+      console.log(capitalize('OMG'));
+      console.log(capitalize('omG'));
+      console.log(capitalize('o'));
+      console.log(capitalize('O'));
+
+      console.log(lastLetter(''));
+      console.log(lastLetter('o'));
+      console.log(lastLetter('bliblablou'));
+      console.log(lastLetter('om'));
+      console.log(lastLetter('omg'));
+  </script>
+</body>
+</html>
