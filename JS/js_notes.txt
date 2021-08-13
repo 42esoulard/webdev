@@ -509,3 +509,61 @@ We can also define multiline functions this way (but we need to explicitly retur
         return result; // if we use curly braces, then we need an explicit "return"
     };
 
+
+
+------------------------------------------------------------------------------------------
+
+---------------------------
+         ARRAYS
+---------------------------
+Initialization:
+    const cars = ["Saab", "Volvo", "BMW"];
+Or (i'm not kidding):
+    const cars = [];
+    cars[0]= "Saab";
+    cars[1]= "Volvo";
+    cars[2]= "BMW";
+They can be accessed and modified with []
+    cars[0]= "Ford Mustang";
+
+------> Methods:
+toString() : convert array values to a string of comma separated valued
+    const fruits = ["Banana", "Orange", "Apple", "Mango"];
+    fruits.toString(); // Banana,Orange,Apple,Mango
+When trying to input an array, it's automatically converted to a string.
+    alert(fruits) // Banana,Orange,Apple,Mango
+
+join(sep) : same but we can specify a separator
+    fruits.join(" * "); // Banana * Orange * Apple * Mango
+pop() : remove last element from array. Returns the removed value.
+shift(): remove first element from array. Returns the removed value. "Shifts" all other elements to a lower index.
+push(elem) : add elem to the end of array. Returns the new array.length.
+    Alternatively, fruits[fruits.length] = "Kiwi";          // Appends "Kiwi" to fruits 
+unshift(elem) : add elem to the beginning of array. Returns the new array.length
+delete elem : changes it to undefined. Prefer shift/pop or the mighty splice.
+    delete fruits[0]; 
+splice(startIndex, nbOfElemsToRemove, elem1, elem2, ...) : insert and/or delete elements, takes
+care of reindexing the whole thing cleanly.
+    fruits.splice(2, 0, "Lemon", "Kiwi"); (will add both elems at index 2)
+    fruits.splice(2, 2); (remove the 2 elems from index 2)
+array1.concat(array2): returns a concatenation of the arrays. Can take several arrays.
+slice(index): return a sliced array from index. can also be slice(index, endAtIndex) (end not included)
+sort() : sort array alphabetically
+
+---------------------------
+         LOOPS
+---------------------------
+    for (let i = 0; i < 100; i++) {
+        if(flaflou)
+            continue;
+        blabla;
+        if (bliblou)
+            break;
+    }
+
+    while(bli === blou) {
+    }
+
+    do {
+        bliblou;
+    } while (bli === blou);
