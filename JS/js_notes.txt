@@ -632,3 +632,104 @@ WHEREAS IN USE STRICT MODE:
         console.log(a);
     }
     func(10); // 10
+
+
+------------------------------------------------------------------------------------------
+
+---------------------------
+          DOM
+---------------------------
+/!\ JS doesn't modify the HTML file, only the DOM
+/!\ Include the JS file at the bottom of the HTML doc, or the DOM 
+modifications won't be applied (the nodes won't exist yet)
+or in <head> with the keyword defer so that it's treated after the end of the file:
+    <head>
+        <script src="js-file.js" defer></script>
+    </head>
+
+------> Query Selectors
+element.querySelector(selector): returns reference to the first match of selector
+element.querySelectorAll(selectors): returns a “nodelist” containing references to all of the matches of the selectors
+    element.querySelector('#container.class_bla');
+    element.querySelectorAll('div');
+/!\ to convert nodelist to array: Array.from(nodelist);
+    or call it with the spread operator '...': ...nodelist 
+
+------> Element Creation
+document.createElement(tagName, [options]) : creates a new element of tag type tagName.
+/!\ the element can be modified. It is not written in the DOM yet.
+
+To place/remove a new element in the DOM:
+parentNode.appendChild(childNode): appends childNode as the last child of parentNode
+parentNode.insertBefore(newNode, referenceNode): inserts newNode into parentNode before referenceNode
+parentNode.removeChild(child): removes child from parentNode on the DOM and returns reference to child
+
+-----> Edit element
+MODIFY INLINE:
+    const div = document.createElement('div'); // create a new div referenced in the variable 'div'
+    div.style.color = 'blue';                                      
+    div.style.cssText = 'color: blue; background: white'; // adds several style rules
+    div.setAttribute('style', 'color: blue; background: white'); // adds several style rules
+
+>>> see http://domenlightenment.com/#6.2
+
+MANIPULATE ATTRIBUTES:
+    div.setAttribute('id', 'theDiv'); // if id exists update it to 'theDiv' else create an id with value "theDiv"
+    div.getAttribute('id'); // returns value of specified attribute, in this case "theDiv"
+    div.removeAttribute('id'); 
+>>> see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes
+
+MANIPULATE CLASSES:
+    div.classList.add('new'); // adds class "new" to your new div
+    div.classList.remove('new'); // remove "new" class from div
+    div.classList.toggle('active');// if div doesn't have class "active" then add it, or if it does, then remove it
+/!\ prefer to toggle css styles rather than adding/removing them
+
+ADD TEXT:
+    div.textContent = 'Hello World!'; //creates a text node containing "Hello World!" and inserts it in div
+ADD HTML: /!\ AVOID THIS OR RISK JS INJECTIONS /!\ https://www.youtube.com/watch?v=ns1LX6mEvyM
+    div.innerHTML = '<span>Hello World!</span>'; // renders the html inside div
+
+
+
+------------------------------------------------------------------------------------------
+
+---------------------------
+          EVENTS
+---------------------------
+Best practice - set an event listener:
+    <!-- the html file -->
+    <button id="btn">Click Me Too</button>
+
+    // the JavaScript file
+    const btn = document.querySelector('#btn');
+        btn.addEventListener('click', () => {
+        alert("Hello World");
+    });
+
+Even better, call a function from the event listener:
+    function alertFunction() {
+        alert("YAY! YOU DID IT!");
+    }
+
+    btn.addEventListener('click', alertFunction);
+
+Get info about the event itself (which button pressed, which DOM node was targeted etc)
+    btn.addEventListener('click', function (e) {
+        console.log(e);
+    });
+
+    btn.addEventListener('click', function (e) {
+        e.target.style.background = 'blue'; //change the targeted node's style
+    });
+
+------> Iterate through nodes to add events:
+    const buttons = document.querySelectorAll('button');
+    
+    buttons.forEach((button) => { // we use the .forEach method to iterate through each button
+        button.addEventListener('click', () => {//and add an eventListener to each
+            alert(button.id);
+        });
+    });
+
+------> Useful events: click, dblclick, keypress, keydown, keyup
