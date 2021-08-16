@@ -1,4 +1,6 @@
 let choice = ["Rock", "Paper", "Scissors"];
+let computerScore = 0;
+let humanScore = 0;
 
 function computerPlay() {
     return choice[Math.floor(Math.random() * 3)];
@@ -39,20 +41,62 @@ function playRound(playerSelection, computerSelection) {
             return "That's gibberish, you lose. " 
     }
     
-    if (result === "You win! ")
+    if (result === "You win! ") {
+        humanScore++;
+        console.log(humanScore);
         return result + playerSelection + " beats " + computerSelection;
+    }
+    computerScore++;
     return result + computerSelection + " beats " + playerSelection;
 }
 
 let playerSelection;
 let computerSelection;
 
-function game() {
-    for (let i = 0; i < 5; i++) {
-        playerSelection = prompt("Rock, Paper or Scissors?");
-        computerSelection = computerPlay();
-        console.log(playRound(playerSelection, computerSelection));
+const main = document.querySelector('main');
+
+const pComputerScore = document.querySelector('.computer-score');
+const pHumanScore = document.querySelector('.human-score');
+
+const buttons = document.querySelectorAll('div button');
+
+const divResult = document.createElement('div');
+divResult.classList.add('result');
+const divWinner = document.createElement('div');
+divWinner.classList.add('winner');
+const playAgain = document.createElement('button');
+playAgain.textContent = "Play again?";
+
+function replay() {
+
+    pComputerScore.textContent = "0";
+    pHumanScore.textContent = "0";
+    computerScore = 0;
+    humanScore = 0;
+
+    main.removeChild(playAgain);
+    main.removeChild(divWinner);
+    buttons.forEach(button => button.addEventListener('click', game))
+}
+
+function game(e) {
+    divResult.textContent = playRound(this["id"], computerPlay());
+    main.append(divResult);
+
+    pComputerScore.textContent = computerScore.toString();
+    pHumanScore.textContent = humanScore.toString();
+
+    if (computerScore === 5 || humanScore === 5) {
+        if (computerScore === 5)
+            divWinner.textContent = "THE MACHINE WON, BOW BEFORE THE MACHINE!"
+        else if (humanScore === 5)
+            divWinner.textContent = "You won at this perfectly randomized game, congrats!"
+        main.appendChild(divWinner)
+        main.appendChild(playAgain);
+        main.removeChild(divResult);
+        buttons.forEach(button => button.removeEventListener('click', game))
+        playAgain.addEventListener('click', replay);
     }
 }
 
-game();
+buttons.forEach(button => button.addEventListener('click', game))

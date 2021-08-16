@@ -1,10 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Page Title</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&family=Oswald&family=Palette+Mosaic&family=Rock+Salt&display=swap" rel="stylesheet">
+  <!----font-family: 'Amatic SC', cursive;
+        font-family: 'Oswald', sans-serif;
+        font-family: 'Palette Mosaic', cursive;-->
+      
+  <link rel="stylesheet" href="rock_paper_scissors.css">
+  <title>Rock, Paper, Scissors!</title>
   <meta charset="UTF-8"/>
 </head>
 <body>
+  <header>
+    <div class='score'>
+      Computer: 
+      <div class='computer-score'>0</div>
+    </div>
+    <div class='score'>
+      Human: 
+      <div class='human-score'>0</div>
+    </div>
+  </header>
+  <main>
+    <div class='fighter'>Choose your fighter!</div>
+    <div class=button-container>
+      <button id='rock'>Rock</button>
+      <button id='paper'>Paper</button>
+      <button id='scissors'>Scissors</button>
+    </div>
+  </main>
+
+
   <script src="rock_paper_scissors.js"></script>
+  <footer>Rock, Paper, Scissors!</footer>
+
 </body>
 </html>
