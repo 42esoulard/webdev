@@ -1,0 +1,78 @@
+html {
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    
+    min-width:1287px;
+
+}
+
+body {
+    background-color: #311C0F;
+    background-image: url('test.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    display:flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    width:100%;
+    height: auto;
+    margin-top:13.5%;
+    margin-left:47%;
+    
+}
+
+
+.grid_container {
+    display:grid;
+    grid-template-rows: repeat(16, 20px);
+    grid-template-columns: repeat(16, 20px);
+    border-style:double;
+}
+
+.button_container {
+    height: 400px;
+    width: 110px;
+    display: flex;
+    flex-direction: column;
+    
+    margin-right: 50px;
+}
+
+.button_container label {
+    
+    font-family: 'Space Mono', monospace;
+    font-size: 15px;
+    background-color: rgba(212, 32, 19, 0.438);
+    color: white;
+    font-weight: 1000;
+
+}
+
+input, select {
+    margin-top:0px;
+    margin-bottom: 50px;
+}
+
+#clear {
+    /* margin: 40px; */
+}
+
+@media (max-width: 800px) {
+    html {
+       
+        height: auto;
+        min-width: 800px;
+    }
+    body {
+  
+        background-image: url('small.jpg');
+        margin-top:18.5%;
+        margin-left:21%;
+
+    }
+    .button_container {
+        margin-right:15px;
+    }
+}

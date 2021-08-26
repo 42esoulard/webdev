@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Etch-A-Sketch</title>
+  <link rel="stylesheet" href="etch.css">
+  <script src="etch.js" defer></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Codystar&family=Faster+One&family=Space+Mono&display=swap" rel="stylesheet">
+  <!-- font-family: 'Space Mono', monospace; -->
+  <!-- font-family: 'Codystar', cursive; -->
+  <!-- font-family: 'Faster One', cursive;  -->
+  <meta charset="UTF-8"/>
+</head>
+<body>
+
+    <div class="button_container">
+        
+          <label for="bgcolorpicker">Background colour:</label>
+          <input type="color" id="bgcolorpicker" value="#829B76">
+        
+          <label for="colorpicker">Drawing colour:</label>
+          <input type="color" id="colorpicker" value="#000000">
+        
+          <label for="drawingstyle">Drawing style:</label>
+          <select name="drawingstyle" id="drawingstyle" value="Overwrite">
+            <option value="overwrite">Overwrite</option>
+            <option value="darken">Darken</option>
+            <option value="rainbow">Rainbow</option>
+          </select> 
+       
+      
+      <button id="clear">Clear Grid</button>
+    </div>
+
+    <div class="grid_container"></div>
+</body>
+</html>
