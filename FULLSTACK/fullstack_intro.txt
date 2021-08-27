@@ -1,0 +1,50 @@
+
+https://www.codecademy.com/articles/back-end-architecture
+
+
+-----------------
+    BACKEND 
+-----------------
+    - The server. This is the computer that receives requests.
+    - The app. This is the application running on the server that listens for requests,
+        retrieves information from the database, and sends a response.
+    - The database. Databases are used to organize and persist data.
+
+-----------------
+    FRAMEWORK 
+-----------------
+= Collection of tools.
+Frameworks exist to make building a website faster and easier. 
+Typically frameworks provide tools to cover the common CRUD cases. 
+[CRUD = Create, Read, Update, Delete]
+For instance you’ll likely find libraries for accessing a database, 
+managing sessions and cookies, creating templates to display your HTML pages and more.
+
+Cool presentation of frameworks, UI front and back https://dev.to/aspittel/what-is-a-web-framework-and-why-should-i-use-one-38c0
+
+------> CHOOSING THE RIGHT APP FRAMEWORK:
+READ THIS BEFORE CHOOSING:
+https://rubygarage.org/blog/technology-stack-for-web-development
+#1  TAILOR IT TO WHAT YOU WANNA DO    
+    -  A framework is a toolset that provides unique advantages for your web application.
+        What are the web app's needs ?
+        ex: should it be a simple CMS site ? A more complex site using framworks ?
+        A high end site using different techs and languages?
+    - If it processes lots of content (ex streaming), it should ne able to process heavy load
+    - If it's social media, it should have low latency
+#2  TIME TO MARKET  
+    The faster you develop and release your application, the more ahead of competitors you’ll be.
+        To spend less time:
+        - Use out-of-the-box solutions like Ruby on Rails
+        - Make sure the chosen stack supports integration with third-party solutions
+        - Have available devs (also for maintenance after launch)
+        - Use technologies with an active online community and documentation for resources
+        - Choose an easy to test technology. Do test-driven development
+#3  COST
+    - Dev have different salaries depending on the tech stack
+    - Maintenance: choose open source techs
+#4  WHATEVER THE TECH, FOLLOW SECURITY GUIDELINES
+#5  SCALABILITY
+    - Horizontal: the app must allow a growth in user base
+    - Vertical: we should be able to add new components without breaking the app
+App ideas: https://github.com/tastejs/awesome-app-ideas
