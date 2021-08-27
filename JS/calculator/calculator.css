@@ -1,0 +1,92 @@
+body {
+    overflow-x: hidden;
+    height:auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background: rgb(236,235,246);
+    background: linear-gradient(90deg, rgba(236,235,246,1) 0%, rgba(221,158,218,1) 44%, rgba(182,235,255,1) 84%, rgba(255,255,255,1) 100%); 
+}
+
+h1 {
+    font-family: 'Fredericka the Great', cursive;
+    text-decoration: underline;
+    font-size:40px;
+    background-image: url('title_bg.png');
+    padding: 10px;
+    margin-top:10px;
+    border-style:solid;
+    border-width:5px;
+    box-shadow: 2px 2px 2px black;
+}
+@media (max-width: 600px){
+    h1 {
+        font-size:30px;
+    }
+}
+
+.calculator {
+    display: grid;
+    width: 250px;
+    height: 400px;
+    grid-gap: 5px;
+    grid-template-areas:
+    "display display display display"
+    " clear     .       .     divi"
+    " seven   eight    nine   mult"
+    " four    five     six    min"
+    "  one     two    three   plus"
+    "   .      zero    dot    eq";
+    margin-top: 10px;
+    background-image: url('https://images.unsplash.com/photo-1596865249308-2472dc5807d7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1381&q=80');
+    background-size: contain;
+    padding: 10px;
+    border-style:solid;
+    box-shadow: 2px 2px 2px black;
+}
+
+#display {
+    
+    grid-area: display;
+    font-family: 'Audiowide', cursive;
+    font-size: 20px;
+    align-self: end;
+    background: rgb(119,136,100);
+    background: linear-gradient(90deg, rgba(119,136,100,1) 0%, rgba(172,201,150,1) 44%, rgba(170,205,129,1) 84%, rgba(151,162,121,1) 100%);
+    text-align: right;
+    padding: 20px 5px 10px 5px;
+    margin: 5px;
+}
+
+button {
+    font-family: 'Audiowide', cursive;
+    font-size: 30px
+}
+
+button:hover {
+    background-color:rgb(224, 224, 224);
+}
+
+button:active {
+    background-color:rgb(203, 252, 244);
+}
+
+footer {
+    font-family: 'Fredericka the Great', cursive;
+    font-weight: 400;
+    margin-top: 40px;
+    width: 100%;
+    text-align: center;
+    color:aliceblue;
+    background-color:rgb(44, 44, 44);
+    padding-bottom: 20px;
+    padding-top:10px;
+    border:1px;
+    border-style: solid;
+
+}
+footer a{
+    color: rgb(109, 167, 200);
+}

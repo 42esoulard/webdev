@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Fredericka+the+Great&display=swap" rel="stylesheet">
+    
+        <!-- font-family: 'Audiowide', cursive;
+        font-family: 'Fredericka the Great', cursive; -->
+
+  <title>Calculator</title>
+  <link rel="stylesheet" href="calculator.css">
+  <script src="calculator.js" defer></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h1> The Mighty Calculator </h1>
+    <!-- make it a grid of 4 col * 6 rows
+        display display display display
+            C       (       )       /
+            7       8       9       *
+            4       5       6       -
+            1       2       3       +
+                    0       .       =               
+                                            -->
+    <div class='calculator'>
+        <div id=display>0</div>
+        <button id=clear accesskey="C">C</button>
+        <!-- <button accesskey="(">(</button>
+        <button accesskey=")">)</button> -->
+        <button id='divi' accesskey="/">/</button>
+        <button id='seven' accesskey="7">7</button>
+        <button id='eight' accesskey="8">8</button>
+        <button id='nine' accesskey="9">9</button>
+        <button id='mult' accesskey="*">*</button>
+        <button id='four' accesskey="4">4</button>
+        <button id='five' accesskey="5">5</button>
+        <button id='six' accesskey="6">6</button>
+        <button id='min' accesskey="-">-</button>
+        <button id='one' accesskey="1">1</button>
+        <button id='two' accesskey="2">2</button>
+        <button id='three' accesskey="3">3</button>
+        <button id='plus' accesskey="+">+</button>
+        <button id='zero' accesskey="0">0</button>
+        <button id='dot' accesskey=".">.</button>
+        <button id='eq' accesskey="=">=</button>
+    
+    </div>
+    <footer>Built by <a href='https://github.com/42esoulard'>esoulard</a></footer>
+</body>
+</html>

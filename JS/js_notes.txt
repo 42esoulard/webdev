@@ -733,3 +733,67 @@ Get info about the event itself (which button pressed, which DOM node was target
     });
 
 ------> Useful events: click, dblclick, keypress, keydown, keyup
+
+
+------------------------------------------------------------------------------------------
+
+---------------------------
+          OBJECTS
+---------------------------
+Contains key-value pairs.
+Create an object:
+    let user = new Object(); // "object constructor" syntax
+    let user = {};  // "object literal" syntax
+    let user = {     // an object
+        name: "John",  // by key "name" store value "John"
+        age: 30        // by key "age" store value 30
+        "likes birds": true;
+    };
+Initialize a property:
+    user["likes birds"] = true;
+Access its properties:
+    alert( user.name ); // John
+    alert( user.age ); // 30
+    alert(user["likes birds"]);
+Remove property:
+    delete user.name;
+    delete user["likes birds"];
+Use a variable as a key:
+    let fruit = prompt("Which fruit to buy?", "apple");
+    let bag = {
+    [fruit]: 5, // the name of the property is taken from the variable fruit
+    };
+    alert( bag.apple ); // 5 if fruit="apple"
+
+Initialize an object: shorthand
+    function makeUser(name, age) {
+        return {
+            name, // same as name: name
+            age,  // same as age: age
+            // ...
+        };
+    }
+    let user = makeUser("John", 30);
+
+Check for member:
+    let user = { name: "John", age: 30 };
+    alert( "age" in user ); // true, user.age exists
+    alert( "blabla" in user ); // false, user.blabla doesn't exist
+iterate on object members:
+    for (let key in user) {
+        // keys
+        alert( key );  // name, age, isAdmin
+        // values for the keys
+        alert( user[key] ); // John, 30, true
+    }
+
+
+
+------------------------------------------------------------------------------------------
+
+---------------------------
+          EVAL
+---------------------------
+
+DONT USE IT
+SECURITY RISK
