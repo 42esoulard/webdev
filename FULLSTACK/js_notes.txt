@@ -1,0 +1,177 @@
+---------------------------
+    ORGANIZING JS CODE 
+---------------------------
+
+
+    Plain Old JavaScript Objects and Object Constructors
+    Factory Functions and the Module Pattern
+    Classes
+    ES6 Modules
+
+-----------------------
+        OBJECTS 
+-----------------------
+
+INSTANTIATE, ACCESS, DOS AND DONT :
+    const myObject = {
+    property: 'Value!',
+    otherProperty: 77,
+    "obnoxious property": function() {
+        // do stuff!
+      }
+    }
+
+    // dot notation
+    myObject.property // 'Value!'
+
+    // bracket notation
+    myObject["obnoxious property"] // [Function]
+
+    const variable = 'property'
+    myObject.variable // this gives us 'undefined' because it's looking for a property named 'variable' in our object
+    myObject[variable] // this is equivalent to myObject['property'] and returns 'Value!'
+
+As much as possible, group related variables in an object for cleaner code.
+
+For an object which will be instanciated multiple times, create a constructor function:
+    function Player(name, marker) {
+        this.name = name
+        this.marker = marker
+        this.sayName = function() {
+            console.log(name)
+        }
+    }
+
+    const player = new Player('steve', 'X')
+    console.log(player.name) // 'steve'
+    player.sayName() //'steve
+
+It is almost always best to return things rather than putting console.log() directly into the function
+
+------> Object prototype:
+All object inherit from their prototype
+ __proto__ use is not generally recommended. It is an attribute of every
+ instance of a prototype, and it points to the parent prototype.
+
+Prefer Object.create(parent.prototype)
+
+We can edit an object prototype by accessing its prototype:
+    function PrintStuff (myDocuments) {
+        this.documents = myDocuments;
+    }
+    // We add the print () method to PrintStuff prototype property so that other instances (objects) can inherit it:
+    PrintStuff.prototype.print = function () {
+        console.log(this.documents);
+    }
+    //Now if we instanciate a PrintStuff, it will have the print() function
+
+Objects also have a constructor property pointing to their constructor:
+    var myObj = new Object ();
+    console.log(myObj.constructor); // Object()
+By default if not specified, the object inherits from Object and has Object()
+as its prototype attribute
+    var userAccount = {name: “Mike”} //userAccount.prototype is Object()
+But
+    function Account () {}
+    var userAccount = new Account () //userAccount.prototype is Account()
+
+PROTOTYPES INHERITING FROM OTHERS:
+    function Plant () {
+        this.country = "Mexico";
+        this.isOrganic = true;
+    }
+
+    // Add the showNameAndColor method to the Plant prototype property
+    Plant.prototype.showNameAndColor =  function () {
+        console.log("I am a " + this.name + " and my color is " + this.color);
+     }
+
+    // Add the amIOrganic method to the Plant prototype property
+    Plant.prototype.amIOrganic = function () {
+        if (this.isOrganic)
+            console.log("I am organic, Baby!");
+    }
+
+    function Fruit (fruitName, fruitColor) {
+        this.name = fruitName;
+        this.color = fruitColor;
+    }
+
+    // Set the Fruit's prototype to Plant's constructor, thus inheriting all of Plant.prototype methods and properties.
+    Fruit.prototype = new Plant ();
+
+    // Creates a new object, aBanana, with the Fruit constructor
+    var aBanana = new Fruit ("Banana", "Yellow");
+
+    // Here, aBanana uses the name property from the aBanana object prototype, which is Fruit.prototype:
+    console.log(aBanana.name); // Banana
+
+    // Uses the showNameAndColor method from the Fruit object prototype, which is Plant.prototype. The aBanana object inherits all the properties and methods from both the Plant and Fruit functions.
+    console.log(aBanana.showNameAndColor()); // I am a Banana and my color is yellow.
+
+THE PROTOTYPE CHAIN:
+If an attribute isn't found in a child, it's looked up 
+in its prototype. If it still isn't, it's looked up in the 
+prototype's prototype. And if it isn't... this goes on
+all the way up the family tree and if it isn't found,
+undefined is returned. 
+Parent properties can be overwritten in children.
+
+OBJECT PROPERTIES INHERITED BY ALL OBJECTS:
+All objects in JavaScript inherit properties and methods from Object.prototype:
+    constructor, 
+    hasOwnProperty (), 
+    isPrototypeOf (), 
+    propertyIsEnumerable (), 
+    toLocaleString (), 
+    toString (), 
+    valueOf ()
+
+WHAT ABOUT THIS:
+No matter where the method is found: in an object or its prototype. 
+In a method call, this is always the object before the dot.
+
+ITERATING ON OBJECT ATTRIBUTES:
+Object.keys(myobject): iterates only on object's own keys
+for...in: iterates on inherited properties too!
+But Object() inherited properties are not listed.
+    let animal = {
+        eats: true
+    };
+
+    let rabbit = {
+        jumps: true,
+        __proto__: animal
+    };
+
+    // Object.keys only returns own keys
+    alert(Object.keys(rabbit)); // jumps
+
+    // for..in loops over both own and inherited keys
+    for(let prop in rabbit) alert(prop); // jumps, then eats
+
+Check if obj has own property (not inherited):
+obj.hasOwnProperty(key): it returns true if obj has its own (not inherited) property named key
+
+/!\ Prefer to define functions of an object on its prototype
+rather than in its constructor, for optimization reasons to save memory.
+ 
+/!\ Use Object.create to set an object's prototype:
+    function Student() {
+    }
+
+    Student.prototype.sayName = function() {
+        console.log(this.name)
+    }
+
+    function EighthGrader(name) {
+        this.name = name
+        this.grade = 8
+    }
+
+    EighthGrader.prototype = Object.create(Student.prototype)
+
+    const carl = new EighthGrader("carl")
+    carl.sayName() // console.logs "carl"
+    carl.grade // 8
+DO NOT DO EighthGrader.prototype = Student.prototype

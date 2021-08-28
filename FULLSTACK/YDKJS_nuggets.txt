@@ -1,0 +1,64 @@
+
+
+------> YDKJS NUGGETS:
+
+    Add "use strict" to top of file to avoid implicit global definition shenanigans
+
+    IMMEDIATELY INVOKED FUNCTION EXPRESSION:
+    Execute a function directly upon definition: add parentheses around it.
+        (function IIFE(){
+            console.log( "Hello!" );
+        })();
+
+    CLOSURE: remembering the value of a variable in a function's scope:
+        function makeAdder(x) {
+            // parameter `x` is an inner variable
+
+            // inner function `add()` uses `x`, so
+            // it has a "closure" over it
+            function add(y) {
+                return y + x;
+            };
+
+            return add;
+        }
+        
+        // `plusOne` gets a reference to the inner `add(..)`
+        // function with closure over the `x` parameter of
+        // the outer `makeAdder(..)`
+        var plusOne = makeAdder( 1 );
+
+        // `plusTen` gets a reference to the inner `add(..)`
+        // function with closure over the `x` parameter of
+        // the outer `makeAdder(..)`
+        var plusTen = makeAdder( 10 );
+
+        plusOne( 3 );		// 4  <-- 1 + 3
+        plusOne( 41 );		// 42 <-- 1 + 41
+        plusTen( 13 );		// 23 <-- 10 + 13 
+    CLOSURE IS A SUPER IMPORTANT NOTION, READ ON IT.
+    We can assign a function to a variable, the variables in the function will be private
+    but their values retained within the function.
+
+    THIS: refers to the calling object. In those cases:
+        foo();				// "global"
+        obj1.foo();			// "obj1"
+        foo.call( obj2 );	// "obj2"
+        new foo();			// undefined
+
+    INHERITANCE: /!\not a copy! If a member isn't find in the child, the parent's one is used
+        var foo = {
+            a: 42
+        };
+
+        // create `bar` and link it to `foo`
+        var bar = Object.create( foo );
+
+        bar.b = "hello world";
+
+        bar.b;		// "hello world"
+        bar.a;		// 42 <-- delegated to `foo`
+
+    MAKE CODE COMPATIBLE WITH OLD JS: polyfilling (making functions compatible with both old 
+    and new) or transpilling
+    
