@@ -7,7 +7,10 @@ function Book(title, author, pages, read, other) {
     if (other)
         this.other = other;
     this.info = function() {
-        return `${title} by ${author}, ${pages} pages, ${read}`;
+        let ret = `${this.title}, by ${this.author}, ${this.pages} pages, ${this.read}`;
+        if (this.other)
+            ret += `, Comment: ${this.other}`;
+        return ret;
     }
 }
 
@@ -27,9 +30,9 @@ function addBookToLibrary() {
 
     const inputs = newBook_form.querySelectorAll('input');
     inputs.forEach(input => book[input.name] = input.value);
-    inputs.forEach(input => input.value = null);
 
     myLibrary.push(book);
+
     hideInputForm();
     displayLibrary();
     return false;
@@ -39,9 +42,14 @@ const html_body = document.querySelector('body');
 
 
 function displayInputForm() {
-    newBook_form.style.display = 'block';
+    if (newBook_form.style.display === 'block')
+        hideInputForm();
+    else
+        newBook_form.style.display = 'block';
 }
 function hideInputForm() {
+    const inputs = newBook_form.querySelectorAll('input');
+    inputs.forEach(input => input.value = null);
     newBook_form.style.display = 'none';
 }
 
@@ -56,11 +64,10 @@ function emptyDisplay() {
 function displayLibrary() {
     emptyDisplay();
     myLibrary.forEach(book => {
-        // const newBookDiv = document.createElement('div');
-        // displayGrid.appendChild(newBookDiv);
-        // newBookDiv.classList.add('.display_book');
-        // newBookDiv.textContent = book.info();
-        console.log(book.info());
+        const newBookDiv = document.createElement('div');
+        displayGrid.appendChild(newBookDiv);
+        newBookDiv.classList.add('display_book');
+        newBookDiv.innerText = book.info().split(', ').join('\r\n');
     });
 }
 
@@ -78,5 +85,5 @@ myLibrary.push(theHobbit);
 // myLibrary.push(harryPotter);
 // myLibrary.push(memoires);
 
-// displayLibrary();
+displayLibrary();
 
