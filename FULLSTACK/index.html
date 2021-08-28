@@ -7,6 +7,29 @@
   <meta charset="UTF-8"/>
 </head>
 <body>
-  
+  <button class=newBook_btn>NEW BOOK</button>
+
+    <form class='newBook_form' onSubmit="return addBookToLibrary()">
+        <label for='author'>Author:</label>
+        <input type=text  name='author' required>
+
+        <label for='title'>Book title:</label>
+        <input type=text  name='title' required>
+
+        <label for='pages'>Number of pages:</label>
+        <input type=text  name='pages' required>
+
+        <label for='read'>Have you read it?</label>
+        <input type=text  name='read' required>
+
+        <label for='other'>Comments:</label>
+        <input type=text  name='other' placeholder="Optional">
+
+        <button type='submit' >Submit</button>
+    </form>
+
+    <div class='display_grid'></div>
+
+
 </body>
 </html>

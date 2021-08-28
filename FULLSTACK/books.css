@@ -1,0 +1,35 @@
+.body {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.newBook_form {
+    display:none;
+    position:fixed;
+    flex-direction: column;
+    justify-content: center;
+    border: 3px solid #f1f1f1;
+    width: 250px;
+    top: 30px;
+    left: 5px;
+    font-size: 15px;
+}
+
+.newBook_btn {
+    background-color:gold;
+}
+
+.display_grid {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-template-rows: repeat(3, auto);
+    width: 400px;
+    height: 600px;
+    grid-gap: 20px;
+}
+
+.display_book {
+    border-style: solid;
+    font-size: 20px;
+    text-align: center;
+}
