@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+
   <title>Books exercise</title>
   <link rel="stylesheet" href="books.css">
   <script src="book.js" defer></script>
   <meta charset="UTF-8"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Source+Sans+Pro&family=WindSong:wght@500&display=swap" rel="stylesheet">
+      <!-- font-family: 'Oswald', sans-serif;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-family: 'WindSong', cursive;  -->
+
+
+
 </head>
 <body>
-  <button class=newBook_btn>NEW BOOK</button>
-
+  <header class='menu_title'>My Little Library</header>
+  <div class=menu> 
+    <button class=newBook_btn>NEW BOOK</button>
+  </div>
     <form class='newBook_form' onSubmit="return addBookToLibrary()">
         <label for='author'>Author:</label>
         <input type=text  name='author' required>
@@ -19,8 +32,11 @@
         <label for='pages'>Number of pages:</label>
         <input type=text  name='pages' required>
 
-        <label for='read'>Have you read it?</label>
-        <input type=text  name='read' required>
+        <label for='read'>Have you read it?</label><br>
+          <input id="yes" type="radio" name="read" value="yes">
+          <label for="yes">Yes</label>
+          <input checked id="no" type="radio" name="read" value="no">
+          <label for="no">No</label><br>
 
         <label for='other'>Comments:</label>
         <input type=text  name='other' placeholder="Optional">
@@ -30,6 +46,8 @@
 
     <div class='display_grid'></div>
 
-
+    <footer>
+      <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    </footer>
 </body>
 </html>
