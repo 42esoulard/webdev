@@ -23,31 +23,31 @@
     <button class=newBook_btn>NEW BOOK</button>
   </div>
     <form class='newBook_form' onSubmit="return addBookToLibrary()">
-        <label for='author'>Author:</label>
-        <input type=text  name='author' required>
+        <label for='author'>Author:</label><br>
+        <input type=text  name='author' required><br>
 
-        <label for='title'>Book title:</label>
-        <input type=text  name='title' required>
+        <label for='title'>Book title:</label><br>
+        <input type=text  name='title' required><br>
 
-        <label for='pages'>Number of pages:</label>
-        <input type=text  name='pages' required>
+        <label for='pages'>Number of pages:</label><br>
+        <input type=text  name='pages' required><br>
 
         <label for='read'>Have you read it?</label><br>
-          <input id="yes" type="radio" name="read" value="yes">
+          <input required id="yes" type="radio" name="read" value="yes">
           <label for="yes">Yes</label>
-          <input checked id="no" type="radio" name="read" value="no">
+          <input id="no" type="radio" name="read" value="no">
           <label for="no">No</label><br>
 
         <label for='other'>Comments:</label>
         <input type=text  name='other' placeholder="Optional">
 
-        <button type='submit' >Submit</button>
+        <button type='submit' class='submit_form'>Add book to my Library</button>
     </form>
 
     <div class='display_grid'></div>
 
     <footer>
-      <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+      <div>Built by <a href='https://github.com/42esoulard'>esoulard</a> - Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     </footer>
 </body>
 </html>

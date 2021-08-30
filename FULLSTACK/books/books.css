@@ -22,6 +22,9 @@ body {
     font-family: 'WindSong', cursive;
     padding:20px;
     width: 100%;
+    border-top:solid;
+    border-bottom:solid;
+    border-width: 10px;
 }
 
 
@@ -30,13 +33,13 @@ body {
     background-color: cadetblue;
     position: fixed;
     left:0px;
-    top:0px;
     height:100%;
     width:100px;
     display:flex;
     justify-content: flex-start;
-    margin-top:110px;
+    margin-top:130px;
     flex-direction: column;
+    border-right:solid;
 
 }
 
@@ -49,15 +52,25 @@ body {
     justify-content: center;
     border: 3px solid #202020;
     width: 250px;
-    top: 130px;
+    margin-top: 170px;
     left: 0px;
     font-size: 15px;
     background-color: rgb(255, 250, 225);
     padding: 10px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.submit_form {
+    padding: 5px;
+    font-family: 'Oswald', sans-serif;
+    background-color: #FED141;
+    margin-top:10px;
 }
 
 .newBook_btn {
-    background-color:gold;
+    background-color:#FED141;
+    font-family: 'Oswald', sans-serif;
+    height:40px;
 }
 
 .display_grid {
@@ -66,51 +79,116 @@ body {
     grid-template-rows: repeat(2, 200px);
     grid-auto-rows: 200px;
     grid-gap: 20px;
-    margin-left: 180px;
+    margin-left: 140px;
     margin-top: 150px;
+    margin-bottom: 20px;
 }
 
 .display_book {
     display:flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: space-between;
-    border-style: solid;
+    border-style: double;
+    border-color:cadetblue;
     font-size: 20px;
     text-align:end;
     white-space: pre;
+    padding:5px;   
+    overflow:scroll; 
+}
+
+.book_title {
+    font-family: 'WindSong', cursive;
+    font-size:1.2em;
+    align-self:center;
+    text-decoration:underline;
+}
+.book_details {
+    font-family: 'Oswald', sans-serif;
+    font-size:0.8em;
+}
+
+.icons_zone {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 @media (max-width: 615px) {
+    html {
+        overflow-x: hidden;
+    }
     .menu_title {
         font-size:30px;
     }
     .menu {
-        margin-top: 80px;
+        margin-top: 30px;
+        height:50px;
+        border-style:none;
+        width:80px;
+        margin-left:10px;
+        
     }
     .display_grid {
-        grid-template-columns: repeat(2, 100px);
-        grid-template-rows: repeat(1, 100px);
-        grid-auto-rows: 100px;
+        grid-template-columns: repeat(2, 200px);
+        grid-template-rows: repeat(2, 200px);
+        grid-auto-rows: 200px;
+        margin-left: 10px;
+        margin-top: 120px;
+        margin-right: 10px;
+        align-self:center;
+    }
+    .newBook_form {
+        margin-top:100px;
+    }
+}
+
+@media (min-width: 615px) {
+    .display_grid {
+        grid-template-columns: repeat(3, 200px);
+    }
+}
+@media (min-width: 950px) {
+    .display_grid {
+        grid-template-columns: repeat(4, 200px);
+    }
+}
+@media (min-width: 1200px) {
+    .display_grid {
+        grid-template-columns: repeat(5, 200px);
     }
 }
 
 .read_img {
-    width: 4em;
+    width: 3em;
     align-self: center;
+    
+
+
+    
 }
 
-.delete_btn {
-    background-color: bisque;
-    align-self: end;
-    justify-self: end;
+.comm_img {
+    width: 1.5em;
+    height:1.5em;
 
+}
+
+
+.delete_btn {
+    background:none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+    height:2em;
+    border-style:none;
 }
 
 footer {
     font-size:15px;
     background-color: cadetblue;
     justify-self: end;
-
+    border-top:solid;
     text-align: center;
     font-family: 'Oswald', sans-serif;
     padding:20px;
