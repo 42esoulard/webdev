@@ -175,3 +175,106 @@ rather than in its constructor, for optimization reasons to save memory.
     carl.sayName() // console.logs "carl"
     carl.grade // 8
 DO NOT DO EighthGrader.prototype = Student.prototype
+
+
+-----------------------------------------------------------------------------------
+
+-----------------------
+      CONSTRUCTOR 
+-----------------------
+
+Instead of having to use new Constructor(),
+use a Factory Function, a function which returns
+a new object:
+    const personFactory = (name, age) => {
+        return { name, age, sayHello };
+    };
+
+This line directly returns an object where this.name=name, etc:
+    return {name, age, sayHello}
+To print variable names + values:
+    console.log({name, color, number, food})
+
+-----------------------
+         SCOPE 
+-----------------------
+scope === which variable i can access
+context === what 'this' refers to
+
+Factory functions: we can only access what they return.
+So the variables and functions inside are accessible to whatever the return
+tries to access, but from the outside we can't.
+They allow us to create private variables:
+    const counterCreator = () => {
+    let count = 0;//count is private
+    return () => {
+        console.log(count);//any instance of counterCreator can access count
+        count++;
+     };
+    };
+
+    const counter = counterCreator();
+    counter(); // 0
+    counter(); // 1
+    counter.count //ERROR, not accessible from the outside
+
+Private functions are functions that are used in the workings of our 
+objects that are not intended to be used elsewhere in our program.
+    const FactoryFunction = string => {
+        const capitalizeString = () => string.toUpperCase();
+        const printString = () => console.log(`----${capitalizeString()}----`);
+        return { printString };
+    };
+DO THINGS THIS WAY AS OFTEN AS POSSIBLE, CLEANER CODE, SMALLER FUNCTIONS
+WHILE KEEPING THEM OUT OF THE WAY AND OUT OF SCOPE! NICE!
+
+Everything publicly exposed can be changed from the outside
+
+------> Inheritance w factory functions:
+
+    const Person = (name) => {
+        const sayName = () => console.log(`my name is ${name}`)
+        return {sayName}
+    }
+
+    const Nerd = (name) => {
+    // simply create a person and pull out the sayName function with destructuring assignment syntax!
+        const {sayName} = Person(name)
+        const doSomethingNerdy = () => console.log('nerd stuff')
+        return {sayName, doSomethingNerdy}
+    }
+
+    const jeff = Nerd('jeff')
+
+    jeff.sayName() //my name is jeff
+    jeff.doSomethingNerdy() // nerd stuff
+
+Or even assign all of the parent to the returned object:
+    const Nerd = (name) => {
+        const prototype = Person(name)
+        const doSomethingNerdy = () => console.log('nerd stuff')
+        return Object.assign({}, prototype, {doSomethingNerdy})
+    }
+
+------> CLASSICAL INHERITANCE VS PROTOTYPAL INHERITANCE
+    Classical: In C++ and Java, inheritance is from a blueprint, not an instance
+    Prototypal: In JS, inheritance is from an existing object, a delegate prototype.
+    
+    When you inherit from a delegate prototype, the new object gets a reference 
+to the prototype. Properties are looked for up the prototype chain.
+Method delegation can preserve memory resources because you only need 
+one copy of each method to be shared by all instances. 
+
+------> Module pattern:
+Basically IIFE but for Factory Function: 
+    var myModule = (function() {
+    'use strict';
+
+    return {
+        publicMethod: function() {
+        console.log('Hello World!');
+        }
+    };
+    })();
+
+    myModule.publicMethod(); // outputs 'Hello World'

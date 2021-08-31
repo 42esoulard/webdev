@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Source+Sans+Pro&family=WindSong:wght@500&display=swap" rel="stylesheet">
+      <!-- font-family: 'Oswald', sans-serif;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-family: 'WindSong', cursive;  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <title>Tic-Tac-Toe</title>
+  <link rel="stylesheet" href="ttt.css">
+  <script src="ttt.js" defer></script>
+  <meta charset="UTF-8"/>
+
+        
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Major+Mono+Display&family=Poppins&display=swap" rel="stylesheet">
+
+    <!-- font-family: 'Homemade Apple', cursive;
+    font-family: 'Major Mono Display', monospace;
+    font-family: 'Poppins', sans-serif; -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+  <header>
+    <h1>Tic-Tac-Toe</h1>
+    <div class='playersInfo'>
+      <div class='player' id='p0'>
+        <div contenteditable="true" class='name' id='p0'>PlayerO</div>
+        <div class='score' id='p0'>Score: 0</div>
+      </div>
+      <div class='player' id='p1'>
+        <div contenteditable="true" class='name' id='p1'>PlayerX</div>
+        <div class='score' id='p1'>Score: 0</div>
+
+      </div>
+    </div>
+  </header>
+
+  <div class='buttons'> 
+    <button class='restart'>Restart Game</button>
+  </div>
+
+  <div class='gameBoard'>
+    <div class='square' id='s0'></div>
+    <div class='square' id='s1'></div>
+    <div class='square' id='s2'></div>
+    <div class='square' id='s3'></div>
+    <div class='square' id='s4'></div>
+    <div class='square' id='s5'></div>
+    <div class='square' id='s6'></div>
+    <div class='square' id='s7'></div>
+    <div class='square' id='s8'></div>
+  </div>
+
+  <div class='winner'>You won, <div class='winnerName'></div><br>Good game!</div>
+ 
+  <footer>
+    <div>Built by <a href='https://github.com/42esoulard'>esoulard</a> </div>
+  </footer>
+</body>
+</html>
