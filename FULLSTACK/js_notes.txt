@@ -278,3 +278,99 @@ Basically IIFE but for Factory Function:
     })();
 
     myModule.publicMethod(); // outputs 'Hello World'
+
+-----------------------
+        CLASSES 
+-----------------------
+Basically same as object constructor and prototype.
+Pros:
+Cons:
+Difference w other languages:
+Difference btw using class or other prototype method:
+Getters and setters:
+Computed names:
+Class fields:
+Function binding:
+Inheritance w class:
+Conflict in JS w functional prog and classes:  
+
+    class User {
+
+        constructor(name) {
+            this.name = name;
+        }
+
+        sayHi() {
+            alert(this.name);
+        }
+    }
+
+    // Usage:
+    let user = new User("John"); //new Bla() automatically calls the class constructor
+    user.sayHi();
+
+A class is actually a function.
+It MUST be called with new.
+We can't enumerate its methods.
+    class MyClass {
+        prop = value; // property
+
+        constructor(...) { // constructor
+            // ...
+        }
+
+        method(...) {} // method
+
+        get something(...) {} // getter method
+        set something(...) {} // setter method
+
+        [Symbol.iterator]() {} // method with computed name (symbol here)
+        // ...
+    }
+
+The static keyword defines a static method or property for a class. 7
+Static members (properties and methods) are called without instantiating 
+their class and cannot be called through a class instance. Useful for data
+that we don't need duplicated in instances
+
+------> Inheritance with 'extends'
+    class Animal {
+        constructor(name) {
+         this.name = name;
+        }
+
+        speak() {
+            console.log(`${this.name} makes a noise.`);
+        }
+    }
+
+    class Dog extends Animal {
+        constructor(name) {
+            super(name); // call the super class constructor and pass in the name parameter
+        }
+
+        speak() {
+            console.log(`${this.name} barks.`);
+        }
+    }
+
+    let d = new Dog('Mitzie');
+    d.speak(); // Mitzie barks.
+
+To inherit from a class:
+    class child extends parent {blabla}
+    in child constructor, call super() //calls the parent constructor
+    super.RandomParentMethod() // to call parent method
+To inherit from an object:
+    Object.setPrototypeOf(child.prototype, parent);
+
+------> Mix-ins: abstract sub-class/template
+
+
+
+---------------------------------------------------------
+
+-----------------------
+         NPM
+-----------------------
+JS Package Manager.
