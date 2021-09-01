@@ -373,4 +373,131 @@ To inherit from an object:
 -----------------------
          NPM
 -----------------------
-JS Package Manager.
+Node Package Manager: to have access to plugins & libraries
+
+https://npmjs.com/ lists packages
+https://docs.npmjs.com/cli-documentation
+
+Installing a package:
+-> If your module depends on it, in the .js add
+    var packageName = require('packageName');
+-> To use one in the CLI, install it from the terminal, in the
+project repo (a node_module dir will be created):
+    npm install packageName
+
+Alternative: installing with a package.json
+create a package.json file:
+  npm init //add -y to skip questions
+  [fill in the required fields]
+  npm install packageName --save //adds is to the json file
+  npm install //to install all the modules from a json file
+
+To customize the npm init questions:
+    touch .npm-init.js
+to add a custom question, in the file add the line:
+    module.exports = prompt("what's your favorite flavor of ice cream, buddy?", "I LIKE THEM ALL");
+to add a custom field to the json, in the file add the line:
+    module.exports = {
+        customField: 'Example custom field',
+        otherCustomField: 'This example field is really cool'
+    }
+
+-----------------------
+        WEBPACK
+-----------------------
+To bundle modules, have multiple js files 
+in index.js:
+    import myFunction from '.myFunctions.js';
+in myFunction.js 
+    export default function myFunction() {
+        //
+    }
+
+create a webpack.config.js with
+    const path = require('path');
+
+    module.exports = {
+        entry: './src/index.js', //our main js file
+        output: {
+            path: path.resolve(__dirname, 'dist'),
+            filename: 'bundle.js', //the bundled output
+        },
+    };
+in the html, the included script is bundle.js
+    <script src="dist/bundle.js"></script>
+Then run 'webpack' on the command-line to create bundle.js.
+
+Generate simple configuration with question prompted
+    npx webpack-cli init
+For in depth conf, https://webpack.js.org/configuration/
+
+/!\ IN package.json, add "private":true to not accidentally
+publish your code
+
+Separate src files from dist files: in src, the code which will be bundled.
+In dist there will be the compiled code.
+
+When installing a package that will be bundled into your production bundle, 
+you should use npm install --save. 
+If you're installing a package for development purposes (e.g. a linter, 
+testing libraries, etc.) then you should use npm install --save-dev
+
+To generate the bundle:
+    npx webpack 
+It generates a main.js file. So in our html we should use
+main.js as script.
+
+ESTELLE IF YOU'RE CONFUSED FOLLOW ALONG WITH
+https://webpack.js.org/guides/getting-started/
+https://webpack.js.org/guides/asset-management/
+https://webpack.js.org/guides/output-management/
+
+------> to import a CSS file 
+    npm install --save-dev style-loader css-loader
+Add module loaders to the webpack.config.js file
+Webpack actually handles all the imports:  modules, other js files, fonts, images, css file,
+data from JSON files... (no need to put them in the html anymore)
+
+------> Debugging after bundling
+https://webpack.js.org/guides/development/
+
+To get proper referencig of error lines, In webpack config, add
+    devtool: 'inline-source-map',
+To automatically recompile upon modification, add to package.json scripts:
+    "watch": "webpack --watch",
+
+-----------------------
+      ES6 MODULES
+-----------------------
+
+------> IMPORT:
+    import "module";
+    import "myFunction" from "myModule";
+    import "myFuncrion" as "myFunctionsNickname" from "myModule"
+    import {function1, function2} from "module"
+/!\ Save resources!
+    - only import what you need
+    - do dynamic import (in conditions, or adding
+    the await keyword)
+        import('/modules/my-module.js')
+            .then(module => {
+                module.loadPageInto(main);
+            })
+            .catch(err => {
+                main.textContent = err.message;
+            });
+    or
+        let module = await import('/modules/my-module.js');
+
+------> EXPORT:
+    // Exporting individual features
+    export let name1, name2, …, nameN; // also var, const
+    export let name1 = …, name2 = …, …, nameN; // also var, const
+    export function functionName(){...}
+    export class ClassName {...}
+
+    // Export list
+    export { name1, name2, …, nameN };
+    export { function1, function2, …, functionN };
+
+------> DIVIDE YOUR CODE IN MODULES (= different thematic files)

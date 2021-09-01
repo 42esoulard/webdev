@@ -1,0 +1,44 @@
+1) create project directory and cd to it
+2) npm install webpack webpack-cli --save-dev 
+    to generate a package.json file
+3) npm install webpack webpack-cli --save-dev
+    to install webpack to the directory
+4) add node_modules folder to .gitignore, it's too heavy
+5) create this arborescence:
+    src/
+        index.js
+    dist/
+        index.html
+6) add 'main.js' as script in the html
+
+7a) create this webpack.config.js file yourself:
+    const path = require('path');
+
+    module.exports = {
+        entry: './src/index.js',
+        output: {
+            filename: 'main.js',
+            path: path.resolve(__dirname, 'dist'),
+        },
+    };
+7b) If you prefer and feel wild, create a  by running
+    npx webpack
+    npx webpack-cli init
+8) console.log from the index.js, then run 
+    npx webpack --watch to check it's working
+9) Build some html
+
+
+
+??) add css:
+        npm install --save-dev style-loader css-loader
+    add module to webpack.config.js:
+        module: {
+            rules: [
+              {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader'],
+              },
+            ],
+        },
+    add import './style.css' to the index.js
