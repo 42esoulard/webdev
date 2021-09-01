@@ -1,0 +1,144 @@
+@font-face {
+    font-family: 'Pacifico';
+    src: url('./Pacifico-Regular.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Raleway';
+    src: url('./Raleway-VariableFont_wght.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+  font-family: 'Coming Soon';
+  src: url('./ComingSoon-Regular.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mr Dafoe';
+    src: url('./MrDafoe-Regular.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-size:300px;
+}
+
+#content {
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    min-height:600px;
+    width: 800px;
+    margin-top: 10px;
+    border-radius: 15px;
+    height:100%;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:center;
+    padding: 10px;
+    background-color: rgba(243, 200, 99, 0.356);
+
+    border-style:solid;
+    border-width: 2px;
+    border-color: rgba(251, 248, 70, 0.329);
+    border-right-style: none;
+    border-left-style: none;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+}
+
+.siteName {
+    font-family: 'Pacifico', cursive;
+    font-size: 70px;
+    white-space: nowrap;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+/* smaller window format */
+@media (max-width: 800px) {
+    .siteName {
+        font-size: 60px;
+    }
+    .logo {
+        width: 55px;
+        height: 55px;
+    }
+}
+
+/* mobile format */
+@media (max-width: 600px) {
+    .siteName {
+        font-size: 40px;
+    }
+    .logo {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+.main {
+    margin: 20px 10px 10px 10px;
+    
+}
+
+.motto {
+    font-family: 'Mr Dafoe', cursive;
+    font-size: 20px;
+    text-align: right;
+    margin-right:20px;
+    margin-top: -20px;
+
+}
+
+
+.newAgeBS {
+    margin-top: 60px;
+    margin-left: 20px;
+    background-color: rgba(255, 246, 220, 0.39);
+    font-family: 'Coming Soon';
+    width: 65%;
+}
+
+footer {
+    font-family: 'Mr Dafoe', cursive;
+    padding:10px;
+    margin-top:600px;
+    text-align: right;
+    background-color: rgba(243, 200, 99, 0.178);
+    
+    border-style:solid;
+    border-width: 2px;
+    border-color: rgba(251, 248, 70, 0.329);
+    border-right-style: none;
+    border-left-style: none;
+    border-bottom-style: none;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+
+}
+
+footer a {
+    color:rgb(168, 85, 54);
+}
