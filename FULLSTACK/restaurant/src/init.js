@@ -4,10 +4,16 @@ import veganLogo_img from './vegan_logo.png';
 import ethicalLogo_img from './ethical_logo.png';
 import fairtradeLogo_img from './fairtrade_logo.png';
 import ecoloLogo_img from './ecolo_logo.png';
-
+import cockatooBig_img from './bird_flipped.png'
+import cookieBig_img from './cookiesLeft_logo.png';
 import cookieBg_img from './cookies_img.png';
 import cookiePattern_img from './cookies_pattern.jpg';
+export {cookieBig_img, veganLogo_img, ethicalLogo_img, fairtradeLogo_img, ecoloLogo_img, cockatooBig_img}
 
+
+import { loadContact } from './contact';
+import { loadHome } from './home';
+import { loadMenu } from './menu'
 export {initHTML};
 
 
@@ -21,27 +27,19 @@ function initHTML() {
 
     loadHeader();
 
-    /* -------------------- */
-
     loadMain();
-
-    /* -------------------- */
-    loadHome();
-    /* ----------------------- */
 
     loadFooter();
 }
 
-function hidePageContent() {
-    // while (myNode.firstChild) {
-    //     myNode.removeChild(myNode.lastChild);
-    // }
-}
 
 function showPageContent(page) {
     const pageContent = document.querySelector('div[class="pageContent"]');
- 
+    const prevPage = document.querySelector('div[id="tab"]');
+    if (prevPage)
+        pageContent.removeChild(prevPage);
     pageContent.appendChild(page);
+    // return prevPage;
 }
 
 
@@ -103,11 +101,15 @@ function loadMain() {
     navContact.classList.add('navButton');
     navBar.append(navHome, navMenu, navContact);
 
-    // SHOW DOESNT WORK, LOAD EACH TIME AND FUCK THE RESOURCES
+    // /!\ ONLY LOAD ONCE, THEN ON EVENT CALL SHOWPAGE
+    const contentHome = loadHome();
+    const contentMenu = loadMenu();
+    const contentContact = loadContact();
+    navHome.addEventListener('click', function() { showPageContent(contentHome)}); 
+    navMenu.addEventListener('click', function() { showPageContent(contentMenu)}); 
+    navContact.addEventListener('click', function() { showPageContent(contentContact)});
 
-    navHome.addEventListener('click', loadHome); 
-    navMenu.addEventListener('click', loadMenu); 
-    navContact.addEventListener('click', loadContact);
+    showPageContent(contentContact);
 }
 
 function loadFooter() {
@@ -165,60 +167,3 @@ function loadFooter() {
 }
 
 
-function loadHome() {
-    /*  !!home page content!!   */
-    const pageContent = document.querySelector('div[class="pageContent"]');
-
-    const homePage = document.createElement('div');
-    homePage.classList.add('homePage');
-    homePage.id = 'tab';
-
-    const veganLogo = new Image();
-    veganLogo.src = veganLogo_img;
-    veganLogo.classList.add('label');
-    veganLogo.title = 'Vegan';
-    const fairtradeLogo = new Image();
-    fairtradeLogo.src = fairtradeLogo_img;
-    fairtradeLogo.classList.add('label');
-    fairtradeLogo.title = 'Fairtrade';
-    const ecoloLogo = new Image();
-    ecoloLogo.src = ecoloLogo_img;
-    ecoloLogo.classList.add('label');
-    ecoloLogo.title = 'Sustainable';
-    homePage.append(veganLogo, fairtradeLogo, ecoloLogo);
-
-    const presentationText = document.createElement('p');
-    presentationText.textContent = 'Us Cockatoos harvest all our ingredients ourselves and fly them back in our beaks all the way from our home in the Solomon Islands!';
-    presentationText.classList.add('presentationText');
-    homePage.appendChild(presentationText)
-    
-    const presentationList = document.createElement('ul');
-    presentationList.textContent = 'Our cookies are made with';
-    presentationList.classList.add('presentationList');
-    homePage.appendChild(presentationList);
-    const item_1 = document.createElement('li');
-    item_1.textContent = '85% cocoa fairtrade chocolate,';
-    const item_2 = document.createElement('li');
-    item_2.textContent = 'Bourbon vanilla pods,';
-    const item_3 = document.createElement('li');
-    item_3.textContent = 'Featherweight flour,';
-    const item_4 = document.createElement('li');
-    item_4.textContent = 'Sugarcane sugar,';
-    const item_5 = document.createElement('li');
-    item_5.textContent = 'Coconut oil,';
-    const item_6 = document.createElement('li');
-    item_6.textContent = 'Love';
-    presentationList.append(item_1, item_2, item_3, item_4, item_5, item_6);
-    
-    pageContent.appendChild(homePage);
-    return homePage;
-    /*  !!end of home page content!!   */
-}
-
-function loadMenu() {
-    
-}
-
-function loadContact() {
-    
-}
