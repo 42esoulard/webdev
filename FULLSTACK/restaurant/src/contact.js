@@ -1,4 +1,5 @@
-import { cockatooBig_img } from "./init";
+import {cockatooBig_img,
+        createElem } from "./init";
 
 export {loadContact};
 
@@ -6,70 +7,50 @@ function loadContact() {
     
     const pageContent = document.querySelector('div[class="pageContent"]');
 
-    const contactPage = document.createElement('div');
-    contactPage.classList.add('contactPage');
-    contactPage.id = 'tab';
+    const contactPage = createElem('div', 'contactPage', '', '', 'tab');
 
-    const streetAdress = document.createElement('div');
-    streetAdress.classList.add('streetAdress');
+    const streetAdress = createElem('div', 'streetAdress');
     contactPage.appendChild(streetAdress);
 
-    const streetAdress_0 = document.createElement('div');
-    streetAdress_0.textContent = 'Come visit us at the Cockatoo Cookies shop!';
-    streetAdress_0.classList.add('presentationText');
-    streetAdress.appendChild(streetAdress_0);
-    const streetAdress_1 = document.createElement('p');
-    streetAdress_1.textContent = 'Tallest Tree behind the Waterfall';
-    streetAdress_1.classList.add('streetAdress');
-    streetAdress.appendChild(streetAdress_1);
-    const streetAdress_2 = document.createElement('p');
-    streetAdress_2.textContent = 'Parc Monceau';
-    streetAdress_2.classList.add('streetAdress');
-    streetAdress.appendChild(streetAdress_2);
-    const streetAdress_3 = document.createElement('p');
-    streetAdress_3.textContent = '75008 PARIS';
-    streetAdress_3.classList.add('streetAdress');
-    streetAdress.appendChild(streetAdress_3);
-    const streetAdress_4 = document.createElement('p');
-    streetAdress_4.textContent = 'FRANCE';
-    streetAdress_4.classList.add('streetAdress');
-    streetAdress.appendChild(streetAdress_4);
-
-    const cockatooBig = new Image();
+    const streetAdress_0 = createElem('div', 'presentationText', 'Come visit us at the Cockatoo Cookies shop!');
+    const streetAdress_1 = createElem('p', 'streetAdress', 'Tallest Tree behind the Waterfall');
+    const streetAdress_2 = createElem('p', 'streetAdress', 'Parc Monceau');
+    const streetAdress_3 = createElem('p', 'streetAdress', '75008 PARIS');
+    const streetAdress_4 = createElem('p', 'streetAdress', 'FRANCE');
+    const cockatooBig = createElem('img', 'contactImage', '', 'Cuckoooo');
     cockatooBig.src = cockatooBig_img;
-    cockatooBig.classList.add('contactImage');
-    streetAdress.appendChild(cockatooBig);
+    streetAdress.append(streetAdress_0, 
+                        streetAdress_1, 
+                        streetAdress_2, 
+                        streetAdress_3, 
+                        streetAdress_4, 
+                        cockatooBig);
 
-
-    const messageForm = document.createElement('div');
-    messageForm.classList.add('messageFormContainer');
+    const messageForm = createElem('div', 'messageFormContainer');
     contactPage.appendChild(messageForm);
 
-    const messageFormTitle = document.createElement('div');
-    messageFormTitle.classList.add('messageFormTitle');
-    messageFormTitle.textContent = 'Sing us your love!'
+    const messageFormTitle = createElem('div', 'messageFormTitle', 'Sing us your love!');
 
-    const messageFormName = document.createElement('input');
-    messageFormName.classList.add('formInput');
+    const messageFormName = createElem('input', 'formInput');
     messageFormName.placeholder = 'Your name'
 
-    const messageFormEmail = document.createElement('input');
-    messageFormEmail.classList.add('formInput');
+    const messageFormEmail = createElem('input', 'formInput');
     messageFormEmail.placeholder = 'Your email adress'
 
-    const messageFormMessage = document.createElement('textArea');
-    messageFormMessage.classList.add('formInput');
+    const messageFormMessage = createElem('textArea', 'formInput');
     messageFormMessage.classList.add('formMessage');
     messageFormMessage.rows = "5";
     messageFormMessage.cols = "30";
-    messageFormMessage.placeholder = 'Your message'
+    messageFormMessage.placeholder = 'Your message';
 
-    const messageFormSubmit = document.createElement('div');
-    messageFormSubmit.classList.add('formButton');
-    messageFormSubmit.textContent = 'Send it our way';
+    const messageFormSubmit = createElem('div', 'formButton', 'Send it our way');
     messageFormSubmit.addEventListener('click', function() {alert('Thanks for your message, we\'ll get back to you ASAP !')})
 
-    messageForm.append(messageFormTitle, messageFormName, messageFormEmail, messageFormMessage, messageFormSubmit);
+    messageForm.append( messageFormTitle, 
+                        messageFormName, 
+                        messageFormEmail, 
+                        messageFormMessage, 
+                        messageFormSubmit);
 
     return contactPage; 
 

@@ -6,13 +6,6 @@
 }
 
 @font-face {
-    font-family: 'Raleway';
-    src: url('./Raleway-VariableFont_wght.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-}
-
-@font-face {
   font-family: 'Coming Soon';
   src: url('./ComingSoon-Regular.ttf') format('truetype');
   font-weight: 600;

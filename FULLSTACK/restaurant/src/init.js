@@ -1,20 +1,19 @@
 import cockatooLogo_img from './cockatoo_logo.png';
 import cookieLogo_img from './cookies_logo.png';
 import veganLogo_img from './vegan_logo.png';
-import ethicalLogo_img from './ethical_logo.png';
 import fairtradeLogo_img from './fairtrade_logo.png';
 import ecoloLogo_img from './ecolo_logo.png';
 import cockatooBig_img from './bird_flipped.png'
 import cookieBig_img from './cookiesLeft_logo.png';
 import cookieBg_img from './cookies_img.png';
 import cookiePattern_img from './cookies_pattern.jpg';
-export {cookieBig_img, veganLogo_img, ethicalLogo_img, fairtradeLogo_img, ecoloLogo_img, cockatooBig_img}
+export {cookieBig_img, veganLogo_img, fairtradeLogo_img, ecoloLogo_img, cockatooBig_img}
 
 import { loadContact } from './contact';
 import { loadHome } from './home';
 import { loadMenu } from './menu';
 
-export {initHTML, loadContact, loadHome, loadMenu, showPageContent};
+export {createElem, initHTML, loadHome, loadMenu, loadContact, showPageContent};
 
 
 function initHTML() {
