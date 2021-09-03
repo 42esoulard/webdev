@@ -10,25 +10,22 @@ import cookieBg_img from './cookies_img.png';
 import cookiePattern_img from './cookies_pattern.jpg';
 export {cookieBig_img, veganLogo_img, ethicalLogo_img, fairtradeLogo_img, ecoloLogo_img, cockatooBig_img}
 
-
 import { loadContact } from './contact';
 import { loadHome } from './home';
-import { loadMenu } from './menu'
-export {initHTML};
+import { loadMenu } from './menu';
+
+export {initHTML, loadContact, loadHome, loadMenu, showPageContent};
 
 
 function initHTML() {
     const body = document.querySelector('body');
     body.style.backgroundImage = `url(${cookiePattern_img})`;
     
-    /* BACKGROUND IMG */
     const content = document.querySelector('div[id="content"]');
     content.style.backgroundImage = `url(${cookieBg_img})`;
 
     loadHeader();
-
     loadMain();
-
     loadFooter();
 }
 
@@ -39,131 +36,95 @@ function showPageContent(page) {
     if (prevPage)
         pageContent.removeChild(prevPage);
     pageContent.appendChild(page);
-    // return prevPage;
 }
 
+function createElem(type, style, text, title, id, link) {
+    const newElem = document.createElement(type);
+    if (style)
+        newElem.classList.add(style);
+    if (text)
+        newElem.textContent = text;
+    if (title)
+        newElem.title = title;
+    if (id)
+        newElem.id = id;
+    if (link)
+        newElem.href = link;
+    return newElem;
+}
 
 function loadHeader() {
 
     const content = document.querySelector('div[id="content"]');
 
-    /* ADDING HEADER */
-    const header = document.createElement('header');
+    const header = createElem('header');
     content.appendChild(header);
 
-    /*   images   */
-    const cockatooLogo = new Image();
+    const cockatooLogo = createElem('img', 'logo');
     cockatooLogo.src = cockatooLogo_img;
-    cockatooLogo.classList.add('logo');
     
-    const cookieLogo = new Image();
+    const cookieLogo = createElem('img', 'logo');
     cookieLogo.src = cookieLogo_img;
-    cookieLogo.classList.add('logo');
 
-    /*   name   */
-    const siteName = document.createElement('div');
-    siteName.textContent = 'Cockatoo Cookies';
-    siteName.classList.add('siteName');
-    header.appendChild(cookieLogo);
-    header.appendChild(siteName);
-    header.appendChild(cockatooLogo);
+    const siteName = createElem('div', 'siteName', 'Cockatoo Cookies');
+
+    header.append(cookieLogo, siteName, cockatooLogo);
 }
 
 function loadMain() {
     const content = document.querySelector('div[id="content"]');
 
-    /* ADDING MAIN CONTENT */
-    const main = document.createElement('div');
-    main.classList.add('main');
+    /* MAIN CONTENT */
+    const main = createElem('div', 'main');
     content.appendChild(main);
 
-    const motto = document.createElement('div');
-    motto.textContent = 'Our cookies will drive you cuckoo!';
-    motto.classList.add('motto');
-    main.appendChild(motto);
+    const motto = createElem('div', 'motto', 'Our cookies will drive you cuckoo!');
 
-    const pageContent = document.createElement('div');
-    pageContent.classList.add('pageContent');
-    main.appendChild(pageContent);
+    const pageContent = createElem('div', 'pageContent');
+    main.append(motto, pageContent);
 
     /*   navigation bar   */
-    const navBar = document.createElement('nav');
-    navBar.classList.add('navBar');
+    const navBar = createElem('nav', 'navBar');
     pageContent.appendChild(navBar);
-    const navHome = document.createElement('li');
-    navHome.textContent = 'Home';
-    navHome.classList.add('navButton');
-    const navMenu = document.createElement('li');
-    navMenu.textContent = 'Menu';
-    navMenu.classList.add('navButton');
-    const navContact = document.createElement('li');
-    navContact.textContent = 'Contact';
-    navContact.classList.add('navButton');
+
+    const navHome = createElem('li','navButton', 'Home', '', '0');
+    const navMenu = createElem('li', 'navButton', 'Menu', '', '1');
+    const navContact = createElem('li', 'navButton', 'Contact', '', '2');
+
     navBar.append(navHome, navMenu, navContact);
-
-    // /!\ ONLY LOAD ONCE, THEN ON EVENT CALL SHOWPAGE
-    const contentHome = loadHome();
-    const contentMenu = loadMenu();
-    const contentContact = loadContact();
-    navHome.addEventListener('click', function() { showPageContent(contentHome)}); 
-    navMenu.addEventListener('click', function() { showPageContent(contentMenu)}); 
-    navContact.addEventListener('click', function() { showPageContent(contentContact)});
-
-    showPageContent(contentContact);
 }
 
 function loadFooter() {
     const content = document.querySelector('div[id="content"]');
-    /* ADDING FOOTER */
-    const footer = document.createElement('footer');
+
+    const footer = createElem('footer');
     content.appendChild(footer);
-    // footer.classList.add('motto');
 
     //Built by esoulard
-    const copyright = document.createElement('div');
-    copyright.textContent = 'Built by ';
-    const esou = document.createElement('a');
-    esou.href = 'https://github.com/42esoulard';
-    esou.title = 'esoulard';
-    esou.textContent = 'esoulard';
+    const copyright = createElem('div', '', 'Built by ');
+    const esou = createElem('a', '', 'esoulard', 'esoulard', '', 'https://github.com/42esoulard');
     copyright.appendChild(esou);
     footer.appendChild(copyright);
 
     // Icons made by Freepik from www.flaticon.com
-    const freepik = document.createElement('div');
-    freepik.textContent = 'Icons and Food Vector made by  from ';
+    const freepik = createElem('div', '', 'Icons and Food Vector made by  from ');
     let text = freepik.childNodes[0];
     let at = 30;
-    const freepikLink = document.createElement('a');
-    freepikLink.href = 'https://www.freepik.com';
-    freepikLink.title = 'Freepik';
-    freepikLink.textContent = 'Freepik'
+    const freepikLink = createElem('a', '', 'Freepik', 'Freepik', '', 'https://www.freepik.com');
     freepik.insertBefore(freepikLink, text.splitText(at));
-    const flaticon = document.createElement('a');
-    flaticon.href = 'https://www.flaticon.com';
-    flaticon.title = 'Flaticon';
-    flaticon.textContent = 'www.flaticon.com';
+    const flaticon = createElem('a', '', 'www.flaticon.com', 'Flaticon', '', 'https://www.flaticon.com');
     freepik.appendChild(flaticon);
     footer.appendChild(freepik);
 
     //Photo by <a href="https://unsplash.com/@picoftasty?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Mae Mu</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-    const photoCredit = document.createElement('div');
-    photoCredit.textContent = 'Background photo by  on ';
+    const photoCredit = createElem('div', '', 'Background photo by  on ');
     text = photoCredit.childNodes[0];
     at = 20;
-    const photoCreditLink = document.createElement('a');
-    photoCreditLink.href = 'https://unsplash.com/@picoftasty?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText';
-    photoCreditLink.title = 'Mae Mu';
-    photoCreditLink.textContent = 'Mae Mu'
+    const photoCreditLink = createElem('a', '', 'Mae Mu', 'Mae Mu', '', 'https://unsplash.com/@picoftasty?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText');
     photoCredit.insertBefore(photoCreditLink, text.splitText(at));
-    const unsplash = document.createElement('a');
-    unsplash.href = 'https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText';
-    unsplash.title = 'Unsplash';
-    unsplash.textContent = 'Unsplash';
+    const unsplash = createElem('a', '', 'Unsplash', 'Unsplash', '', 'https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText');
     photoCredit.appendChild(unsplash);
     footer.appendChild(photoCredit);
-    // freepik.classList.add('motto');
-    /* ----------------------- */
 }
 
 
