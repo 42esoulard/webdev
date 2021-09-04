@@ -1,0 +1,28 @@
+todo-item properties:
+    - title
+    - description
+    - duedate:
+        app: import date-fns library
+    - priority
+        app: scale of 3 (low/medium/high)
+        ui: icons/colors?
+    - notes
+        app: 
+        ui: accessible with an icon, handle extensible length
+    - category 
+        app: must be editable default: work/personal/administrative
+        ui: with icons to choose from
+    - archived
+        app:
+        ui: if yes (ie done + past), put it in archive folder
+    - done 
+        app: 
+        ui: grey it out 
+            if done + past: put it in archive
+    
+
+>>> Must be sorted by:
+    - date
+    - priority (+ date for same priority)
+    - last added
+    - category (+ date)

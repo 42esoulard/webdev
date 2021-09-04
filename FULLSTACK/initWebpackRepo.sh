@@ -59,6 +59,7 @@ module.exports = {
 
 # TO IMPORT CSS/IMAGES/FONTS
 echo -e "${LPURPLE}Initializing .css file...${NC}"
+npm install --save-dev style-loader css-loader
 touch src/style.css && echo -e "import './style.css'" > src/index.js
 # mv mySuperCoolImage.png src/ && mv mySuperCoolFont.tff src/
 # echo -e "import './mySuperCoolImage.png'" > src/index.js
