@@ -1,5 +1,5 @@
 1) create project directory and cd to it
-2) npm install webpack webpack-cli --save-dev 
+2) npm init 
     to generate a package.json file
 3) npm install webpack webpack-cli --save-dev
     to install webpack to the directory
@@ -28,6 +28,7 @@
     npx webpack --watch to check it's working
 9) Build some html
 
+
 10a) import css files:
         npm install --save-dev style-loader css-loader
     add module to webpack.config.js:
@@ -50,7 +51,6 @@
                 },
             ],
         },
-    add import './style.css' to the index.js
 10c) import font files:
     add module to webpack.config.js:
         module: {
@@ -61,4 +61,3 @@
                 },
             ],
         },
-    add import './style.css' to the index.js
