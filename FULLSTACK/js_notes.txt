@@ -501,3 +501,53 @@ To automatically recompile upon modification, add to package.json scripts:
     export { function1, function2, …, functionN };
 
 ------> DIVIDE YOUR CODE IN MODULES (= different thematic files)
+
+
+
+------------------------------------------------------------------
+
+-----------------------
+     OOP PRINCIPLES
+-----------------------
+SOLID JS: 
+    0) Single Responsibility Principle:
+        A class/object/module should only have 1 responsability.
+        Separate DOM manipulation from application logic.
+      Avoid tightly coupled objects!
+        An object should ultimately be able to stand alone,
+        not depend on other objects.
+        we should be able to start off writing our game using 
+        primarily console.logs() and then add in a bunch of DOM 
+        functions later without touching the game logic.
+        Keep DOM functions in the main loop, don't interweave
+        them in game functions, it's messy.
+        To know what's 'one responsability', follow Object Role Stereotypes:
+            - Information holder (hold infos, provides it to other objs)
+            - Structurer (holds info about relationships btw objects)
+            - Service provider (performs specific work on demand)
+            - Controller (makes decisions to handle a task)
+            - Coordinator (delegates work to other objs)
+            - Interfacer (transforms info btw differents parts of the system)
+        Once a function is written, DIVIDE IT AS MUCH AS POSSIBLE IN UNIQUE ACTIONS
+    1) Open/Closed Principle
+        If I have to open the JS file your module and make a modification 
+        in order to extend it, you’ve failed the open closed principle.
+        Add getters, setters, adders.
+    2) Liskov Substitution Principle
+        Don't put inheritance of object with mutually exclusive characteristics
+    3) Interface Segregation Principle
+        A module accessible for outside use shouldn't require other stuff to 
+        be called beforehand. Other requirements should be optional.
+    4) Dependency Inversion Principle
+        Try not to call other objects methods IN a function. Rather,
+        take the method as a parameter, this way you can switch with another
+        method for testing and u don't depend on the object's implementation.
+
+------> HOW TO AVOID TIGHTLY COUPLED MODULES: 
+    https://medium.com/@alexcastrounis/how-to-write-highly-scalable-and-maintainable-javascript-coupling-c860787dbdd4
+    - Use a mediator object. Other modules will only know about
+    the mediator object, the mediator object checks and transfers info
+    to the other modules (ie flight control tower).
+    - Publish/Subscribe: a module updating a value calls the mediator's 
+    'publish' method, an object needing to be updated on the value calls 'subscribe'.
+    If the value is modified, the receiver is automatically notified

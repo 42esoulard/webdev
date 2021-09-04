@@ -19,11 +19,18 @@
     font-style: normal;
 }
 
+html {
+    display: flex;
+    justify-content: center;
+    max-width:100%;
+}
+
 body {
     display: flex;
     flex-direction: row;
     justify-content: center;
     background-size:300px;
+    max-width:100%;
 }
 
 #content {
@@ -83,12 +90,13 @@ header {
 /* mobile format */
 @media (max-width: 600px) {
     .siteName {
-        font-size: 40px;
+        font-size: 30px;
     }
     .logo {
         width: 45px;
         height: 45px;
     }
+
 }
 
 .main {
@@ -145,7 +153,7 @@ header {
 .homePage, .menuPage, .contactPage {
     margin-top: 50px;
     margin-left: 10px;
-    padding: 20px;
+    padding: 10px;
     background-color: rgba(255, 246, 220, 0.514);
     font-family: 'Coming Soon', sans-serif;
     width: 65%;
@@ -165,8 +173,7 @@ header {
     background-color: rgba(243, 200, 99, 0.178);
     font-family: 'Coming Soon', sans-serif;
     font-size:14px;
-    width: 70%;
-    min-width:230px;
+    min-width:190px;
 }
 
 .menuPage .menuList {
@@ -223,17 +230,26 @@ header {
 
 .contactPage {
     
-    width: 290px;
+    max-width: 800px;
     display:flex;
     flex-direction: column;
     align-items: center;
 }
 
-.contactPage .streetAdress {
+.contactPage .streetAdressContainer {
+    width: 250px;
     margin:0px;
     margin-left:0px;
     background-color: rgba(252, 240, 209, 0.699);
+    border-radius: 15px;
+    border-color: rgba(251, 248, 70, 0.329);
+    border-style:solid;
 }
+.contactPage .streetAdress {
+    margin:0px;
+    margin-left:20px;
+}
+
 .contactPage .contactImage {
     width: 200px;
     height: 200px;
@@ -242,16 +258,20 @@ header {
 
 .contactPage .presentationText {
     font-family: 'Mr Dafoe', cursive;
-    font-size:35px;
+    font-size:28px;
+    margin: 7px;
     margin-bottom:20px;
 }
 
 .contactPage .messageFormContainer {
+    width: 230px;
+    border-color: rgba(251, 248, 70, 0.329);
+    border-style:solid;
+    border-radius: 15px;
     font-family: 'Mr Dafoe', cursive;
     font-size:35px;
     margin-top:60px;
     background-color: rgba(252, 240, 209, 0.699);
-    margin-left: 40px;
     padding-left:20px;
 }
 
@@ -262,6 +282,10 @@ header {
     max-width: 200px;
     margin-top:20px;
 }
+.messageFormTitle {
+    font-size: 32px;
+    margin-top:10px;
+}
 
 .contactPage .formButton {
     color:antiquewhite;
@@ -271,7 +295,8 @@ header {
     margin-left:-20px;
     margin-top:10px;
     text-align: center;
-    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     border-width:1px;
     border-style:solid;
     transition:0.5s;

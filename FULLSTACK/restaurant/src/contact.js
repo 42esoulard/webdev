@@ -9,7 +9,7 @@ function loadContact() {
 
     const contactPage = createElem('div', 'contactPage', '', '', 'tab');
 
-    const streetAdress = createElem('div', 'streetAdress');
+    const streetAdress = createElem('div', 'streetAdressContainer');
     contactPage.appendChild(streetAdress);
 
     const streetAdress_0 = createElem('div', 'presentationText', 'Come visit us at the Cockatoo Cookies shop!');

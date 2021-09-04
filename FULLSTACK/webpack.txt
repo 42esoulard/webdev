@@ -21,16 +21,14 @@
             path: path.resolve(__dirname, 'dist'),
         },
     };
-7b) If you prefer and feel wild, create a  by running
+7b) If you prefer and feel wild, create it by running
     npx webpack
     npx webpack-cli init
 8) console.log from the index.js, then run 
     npx webpack --watch to check it's working
 9) Build some html
 
-
-
-??) add css:
+10a) import css files:
         npm install --save-dev style-loader css-loader
     add module to webpack.config.js:
         module: {
@@ -39,6 +37,28 @@
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
               },
+            ],
+        },
+    add import './style.css' to the index.js
+10b) import image files:
+    add module to webpack.config.js:
+        module: {
+            rules: [
+                {
+                    test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                    type: 'asset/resource',
+                },
+            ],
+        },
+    add import './style.css' to the index.js
+10c) import font files:
+    add module to webpack.config.js:
+        module: {
+            rules: [
+                {
+                    test: /\.(woff|woff2|eot|ttf|otf)$/i,
+                    type: 'asset/resource',
+                },
             ],
         },
     add import './style.css' to the index.js
