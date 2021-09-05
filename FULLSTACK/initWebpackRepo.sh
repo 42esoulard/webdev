@@ -24,6 +24,23 @@ touch .gitignore && echo -e 'node_modules/' > .gitignore
 mkdir src && touch src/index.js
 mkdir dist && touch dist/index.html
 
+echo -e '<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script src="main.js" defer></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <header></header>
+  <main></main>
+  <footer></footer>
+</body>
+</html>' > dist/index.html
+
+
 # TINIEST DEFAULT CONFIG WITH CSS, IMG AND FONT IMPORT
 echo -e "${LPURPLE}Initializing webpack.config.js with a simple default config...${NC}"
 touch webpack.config.js \
@@ -31,6 +48,8 @@ touch webpack.config.js \
 
 module.exports = {
     entry: './src/index.js',
+    mode: 'development',
+    devtool: 'inline-source-map',
     output: {
         filename: 'main.js',
         path: path.resolve(__dirname, 'dist'),
