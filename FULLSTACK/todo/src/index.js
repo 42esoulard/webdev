@@ -1,274 +1,140 @@
 import './style.css'
-import { compareDesc } from 'date-fns';
+import { format } from 'date-fns';
+// import { compareDesc } from 'date-fns';
 
-const item = (dueDateStr, project, title='New Item') => {
-    title,
-    project;
-    let dueDate = new Date(dueDateStr)
-    let description;
-    let priority = 'medium';
-    let notes = '';
-    let category;
+import {itemsHandler} from './items'
 
-    let checklist = new Array();
-    let archived = false;
-    const info = function() {
-        return `Item DD[${dueDate}] title [${title}] in [${project.info()}]`
-    }
-    return {
-        title,
-        project,
-        description,
-        dueDate,
-        priority,
-        notes,
-        category,
-        info,
-    }
-}
+import { tests } from './tests.js'
+// import { projectsHandler } from './projects'
+export {itemsHandler}
 
-const project = (title='New Project', category='default') => {
-    title,
-    category;
-    let items = new Array();
-
-    const setTitle = function(newTitle) {
-        title = newTitle;
-    }
-    const getTitle = function() {
-        return title;
-    }
-    const setCategory = function(newCategory) {
-        category = newCategory;
-    }
-    const getCategory = function() {
-        return category;
-    }
-    const info = function() {
-        return `Project title [${title}] category[${category}]`
-    }
-    const printItemsInfo = function() {
-        console.log(this.items.length)
-        this.items.forEach(item => console.log(item.info()));
-    }
-
-    const isEqual = function(otherProject) {
-        if (title === otherProject.getTitle() && category === otherProject.getCategory())
-            return true;
-    }
-    return {
-        setTitle,
-        setCategory,
-        getTitle,
-        getCategory,
-        items,
-        info,
-        printItemsInfo,
-        isEqual,
-    }
-}
-
-const itemsHandler = (function() {
-    let itemsList = new Array();
-
-    const createNewItem = function(dueDate, title, project=(projectList[0])) {
-        let newItem = item(dueDate, project, title);
-        newItem.project = project;
-        newItem.category = project.category;
-        itemsList.push(newItem);
-        sortItemsByDueDate(itemsList);
-        return newItem;
-    }
-
-    const setProject = function(item, newProject) {
-        item.project = newProject;
-    }
-
-    const deleteItem = function(item) {
-        if (itemsList.indexOf(item) >= 0)
-            itemsList.splice(itemList.indexOf(item), 1);
-    }
-
-    const deleteItemsByProject = function(project) {
-        itemsList.forEach(item => {
-            if (item.project.isEqual(project))
-                itemsList.splice(itemsList.indexOf(item), 1);
-        })
-    }
-
-    const printAllItemsInfo = function() {
-        itemsList.forEach(item => console.log(item.info()));
-    }
-
-    const sortItemsByDueDate = function(items) {
-        for (let i = 0; i < items.length - 1; i++) {
-            if (compareDesc(items[i].dueDate, items[i + 1].dueDate) < 0) {
-                let tmp = items[i];
-                items[i] = items[i + 1];
-                items[i + 1] = tmp;
-                i = -1;
-            }
-        }
-    }
-
-    return {
-        createNewItem,
-        setProject,
-        deleteItem,
-        deleteItemsByProject,
-        printAllItemsInfo,
-        sortItemsByDueDate,
-    }
-
-})();
+const DEFAULT_SORT_TYPE = 'dueDate'
 
 
+// does UI work
+const interfacer = (function() {
 
-const projectsHandler = (function() {
-    let projectsList = new Array();
-
-    const createNewProject = function(title, category) {
-        projectsList.splice(projectsList.length - 1, 0, project(title, category));
-    }
-
-    const initProjectList = (function() {
-        projectsList.push(project('Default', 'default'));
-        projectsList.push(project('Archive', 'default'));
-    })();
-
-    const addItemToProject = function(item, newProject) {
-        newProject.items.push(item);
-    }
-
-    const removeItemFromProject = function (item, project) {
-        if (project && project.items.includes(item))
-            project.items.splice(project.items.indexOf(item), 1);
-    }
-
-    const deleteProject = function(project) {
-        if (project && projectsList.includes(project) && 
-            projectsList.indexOf(project) !== 0 && 
-            projectsList.indexOf(project) !== projectsList.length - 1)
-                projectsList.splice(projectsList.indexOf(project), 1);
-    }
-
-    const printProjectsInfo = function() {
-        projectsList.forEach(project => {console.log(project.info()); project.printItemsInfo()});
-    }
-
-    const getProjectByIndex = function(n) {
-        return projectsList[n];
-    }
-
-    return {
-        createNewProject,
-        addItemToProject,
-        removeItemFromProject,
-        deleteProject,
-        printProjectsInfo,
-        getProjectByIndex,
-    }
-
-})();
-
-const coordinator = (function () {
-
-    const createNewProject = function(title, category) {
-        projectsHandler.createNewProject(title, category);
-    }
-
-    const createNewItem = function(dueDate, title, project=getProjectByIndex(0)) {
-        const newItem = itemsHandler.createNewItem(dueDate, title, project);
-        projectsHandler.addItemToProject(newItem, project);
-        itemsHandler.sortItemsByDueDate(project.items);
-
-    }
-
-    const changeItemProject = function(item, newProject) {
-        projectsHandler.removeItemFromProject(item, item.project);
-        projectsHandler.addItemToProject(item, newProject);
-        itemsHandler.setProject(item, newProject);
-    }
-
-    const deleteProject = function(project) {
-        itemsHandler.deleteItemsByProject(project);
-        projectsHandler.deleteProject(project);
-        
-    }
-
-    const deleteItem = function(item) {
-        projectsHandler.removeItemFromProject(item, item.project);
-        itemsHandler.deleteItem(item);
+    const contentContainer = document.querySelector('div[class=\'contentContainer\']');
+    
+    const createNode = function(type, style, text, title, id) {
+        const newNode = document.createElement(type);
+        if (style)
+            newNode.classList.add(style);
+        if (text)
+            newNode.textContent = text;
+        if (title)
+            newNode.title = title;
+        if (id)
+            newNode.id = id;
+        // if (link)
+        //     newNode.href = link;
+        return newNode;
     }
     
+    const displayItem = function(item, parentNode=contentContainer) {
 
-    const printProjectsInfo = function() {
-        projectsHandler.printProjectsInfo();
-    }
-    const printAllItemsInfo = function() {
-        itemsHandler.printAllItemsInfo();
+        const itemContainer = createNode('div', 'itemContainer', '', item.title);
+
+        const itemCheck = createNode('input', 'checkbox', '', 'Not done', 'checkbox');
+        itemCheck.type = 'checkbox';
+        itemCheck.checked = item.done;
+        if (itemCheck.checked)
+            itemChecked.title = 'Done!'
+
+        const itemTitle = createNode('div', 'itemTitle', item.title);
+        const itemDueDate = createNode('div', 'itemDueDate', format(item.dueDate, 'MMM do yyyy'));
+        const itemCategory = createNode('div', 'itemCategory', item.category, item.category);
+        const itemPriority = createNode('div', 'itemPriority', item.priority, item.priority);
+
+
+        itemContainer.append(itemCheck, itemTitle, itemDueDate, itemCategory, itemPriority);
+        parentNode.appendChild(itemContainer);
     }
 
-    const getProjectByIndex = function(n) {
-        return projectsHandler.getProjectByIndex(n);
+    const displayAsset = function(name) {
+            const assetNode = createNode('div', 'assetContainer', name, '', name);
+            if (!name)
+                assetNode.id = "default";
+            contentContainer.appendChild(assetNode);
+            return assetNode;
     }
 
-    
+    const clearLists = function() {
+        contentContainer.innerHTML = '';
+    }
 
     return {
-        createNewProject,
-        deleteProject,
-
-        createNewItem,
-        changeItemProject,
-        deleteItem,
-        
-        getProjectByIndex,
-
-        printAllItemsInfo,
-        printProjectsInfo,
+        displayAsset,
+        displayItem,
+        clearLists,
     }
 })()
 
 
+// delegates to both coordinator (app) and interfacer (UI)
+const mediator = (function() {
+    let sortingType;
 
+    // const sortedByProjects = function(projectsList) {
+    //     projectsList.forEach(project => {
+    //         const infos = itemsHandler.getProjectInfo(project);
+    //         const projectNode = interfacer.displayProject(infos.title, infos.category)
+    //         infos.items.forEach(item => interfacer.displayItem(item, projectNode));
+    //     })
+    // }
 
+    const sortedByDueDate = function(itemsList) {
+        const assetNode = interfacer.displayAsset('');
+        itemsList.forEach(item => {
+            interfacer.displayItem(item, assetNode);
+        })
+    }
 
-const tests = function() {
-    console.log('INIT')
-    coordinator.printProjectsInfo();
-    // coordinator.printAllItemsInfo();
+    //asset = category || project || priority
+    const sortedByAsset = function(type, itemsList) {
+        const assetList = itemsHandler.getAssetList(type);
+        assetList.forEach(asset =>
+        {
+            const assetNode = interfacer.displayAsset(asset);
+            itemsList.forEach(item => {
+                if (item[type] === asset)
+                    interfacer.displayItem(item, assetNode);
+            })
+        })
+        
+    }
 
-    console.log('new proj + new item')
-    coordinator.createNewProject('Home repairs', 'DIY');
-    coordinator.createNewItem('December 17, 2021 03:24:00', 'fix sink', coordinator.getProjectByIndex(2))
-    coordinator.printProjectsInfo();
-    // coordinator.printAllItemsInfo();
+    const sort = function(type) {
+        if (type === sortingType)
+            return;
+        sortingType = type;
+        interfacer.clearLists();
+        const itemsList = itemsHandler.getItems();
+        if (type === 'project' || type === 'category' || type === 'priority')
+            sortedByAsset(type, itemsList);
+        else if (type === 'dueDate')
+            sortedByDueDate(itemsList);
+        else
+            sort('dueDate');
+    }  
+    
+    return {
+        sort,
+    }
+})()
 
-    console.log('+2 fix sink in default and 1 in archived')
-    coordinator.createNewItem('September 12, 2021 03:24:00', 'fix sink')
-    coordinator.createNewItem('September 04, 2021 03:24:00', 'fix sink')
-    coordinator.createNewItem('September 12, 2021 03:20:00', 'fix sink', coordinator.getProjectByIndex(1));
-    coordinator.printProjectsInfo();
-    // coordinator.printAllItemsInfo();
+const setNavEvents = (function() {
+    const navButtons = document.querySelectorAll('li[class="navButton"]');
+    navButtons.forEach(button => button.addEventListener('click', function() {
+        mediator.sort(button.id);
+    }))
+})()
 
-    console.log('get ALL items by due date')
-    coordinator.printAllItemsInfo();
-
-    console.log('delete DIY (should delete fixsink')
-    coordinator.deleteProject(coordinator.getProjectByIndex(2));
-    coordinator.printProjectsInfo();
-    // coordinator.printAllItemsInfo();
-
-    console.log('get ALL items by due date')
-    coordinator.printAllItemsInfo();
-
-    console.log('bad proj index')
-    coordinator.getProjectByIndex(-1)
-}
 
 const initApp = (function () {
     
     tests();
+    mediator.sort(DEFAULT_SORT_TYPE);
+
 
 })()

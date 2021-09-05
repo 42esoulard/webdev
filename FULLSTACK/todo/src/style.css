@@ -1,0 +1,105 @@
+
+body {
+    background-color: rgb(255, 199, 192);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0px;
+}
+
+header {
+    text-align:center;
+    border-style: solid;
+}
+
+footer {
+    text-align: center;
+    border-style: solid;
+}
+
+main {
+    min-height: 600px;
+    display: flex;
+    flex-direction: row;
+
+}
+
+
+nav {
+    align-self:stretch;
+    background-color: aquamarine;
+    padding: 15px;
+    text-align: center;
+}
+.navTitle {
+    font-size:15px;
+}
+.navList {
+    list-style: none;
+    padding-left: 0px;
+}
+.navButton {
+    margin-bottom: 10px;
+    border-style:solid;
+    border-radius: 5px;
+    padding:5px;
+}
+.navButton:hover {
+    transition:0.8s;
+    background-color: blueviolet;
+}
+
+.contentContainer {
+    background-color: rgb(182, 113, 247);
+    align-self: stretch;
+    width: 100%;
+    padding:10px;
+}
+
+.assetContainer {
+    border-style: solid;
+    border-radius: 10px;
+}
+.itemContainer {
+    display: grid;
+    background-color: red;
+    width:100%;
+    grid-template-columns: 20px 0.8fr 120px 20px 20px;
+    grid-template-rows: 20px;
+}
+
+/* title,
+    project,
+    dueDate,
+    priority,
+    notes,
+    category, */
+
+/*
+
+PROJECT
+ [ ] title     |   dueDate    | categoryemoticon | priority color emoticon
+
+on hover, show 
+    [Part of ] PROJECT
+        L notes
+*/
+
+/* 
+PRIORITY
+ [ ] title     |   dueDate    | categoryemoticon | priority color emoticon
+
+ on hover on title, show 
+    [Part of ] PROJECT
+        L notes
+ */
+
+
+ /* CATEGORY
+ [ ] title     |   dueDate    | categoryemoticon | priority color emoticon
+
+ on hover on title, show 
+    [Part of ] PROJECT
+        L notes 
+        
+*/

@@ -24,5 +24,4 @@ todo-item properties:
 >>> Must be sorted by:
     - date
     - priority (+ date for same priority)
-    - last added
     - category (+ date)
