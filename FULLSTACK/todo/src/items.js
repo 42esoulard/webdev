@@ -2,7 +2,7 @@ import { compareDesc } from 'date-fns';
 
 export {itemsHandler}
 
-const item = (dueDateStr='', title='New Item', project='',
+const item = (dueDateStr='', title='New Item', project='default',
              priority='medium', category='default') => {
     title,
     project,
@@ -49,10 +49,11 @@ const item = (dueDateStr='', title='New Item', project='',
 const itemsHandler = (function() {
     let itemsList = new Array();
     
-    let projectsList = new Array();
-    let categoriesList = ['animals', 'cat', 'existencialCrisis', 'default', 
+    let projectsList = new Array('default');
+    let categoriesList = ['animals', 'cat', 'default', 
                         'diet', 'family', 'groceries', 
-                        'health', 'house', 'mentalHealth', 
+                        'health', 'existencialCrisis', 
+                        'house', 'mentalHealth', 
                         'movies', 'music', 'podcasts', 
                         'reading', 'social', 'sport',
                         'study', 'travel', 'work'];
@@ -61,8 +62,9 @@ const itemsHandler = (function() {
 
     const setItemCategory = function(item, newCategory) {
         item.category = newCategory;
-        if (!categoriesList.includes(item.category))
-            categoriesList.push(item.category);
+    }
+    const setItemPriority = function(item, newPriority) {
+        item.priority = newPriority;
     }
 
     const setItemProject = function(item, newProject) {
@@ -76,8 +78,11 @@ const itemsHandler = (function() {
         sortItemsByDueDate();
     }
 
+    const setItemTitle = function(item, name) {
+        item.title = name;
+    }
+
     const getAssetList = function(type) {
-        console.log('here');
         switch (type) {
             case 'category':
                 return categoriesList;
@@ -103,23 +108,34 @@ const itemsHandler = (function() {
         return newItem;
     }
 
+    const createNewProject = function(title) {
+        projectsList.push(title);
+    }
+
+    const editProjectName = function(oldName, newName) {
+        if (!projectsList.includes(oldName))
+            return;
+        projectsList[projectsList.indexOf(oldName)] = newName;
+    }
+
     const setProject = function(item, newProject) {
         item.project = newProject;
     }
 
     const deleteItem = function(item) {
         if (itemsList.indexOf(item) >= 0)
-            itemsList.splice(itemList.indexOf(item), 1);
+            itemsList.splice(itemsList.indexOf(item), 1);
     }
+
 
     const deleteItemsByAsset = function(type, asset) {
         itemsList.forEach(item => {
             if (item[type] === asset)
                 itemsList.splice(itemsList.indexOf(item), 1);
         })
-        if (type === 'category')
+        if (type === 'category' && categoriesList.includes(asset))
             categoriesList.splice(categoriesList.indexOf(asset), 1);
-        else if (type === 'project')
+        else if (type === 'project' && projectsList.includes(asset))
             projectsList.splice(projectsList.indexOf(asset), 1);
     }
 
@@ -150,6 +166,8 @@ const itemsHandler = (function() {
 
     return {
         createNewItem,
+        createNewProject,
+        editProjectName,
         setProject,
         deleteItem,
         printAllItemsInfo,
@@ -159,9 +177,12 @@ const itemsHandler = (function() {
         deleteItemsByAsset,
 
         setItemCategory,
+        setItemPriority,
         setItemProject,
-        getAssetList,
+        setItemTitle,
         setItemDate,
+
+        getAssetList,
     }
 
 })();

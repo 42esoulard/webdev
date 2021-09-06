@@ -51,6 +51,7 @@ header .title {
     background-size:contain;
     width:300px;
     box-shadow: 5px 10px 5px rgba(128, 98, 40, 0.5);
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
 }
 
 @media (max-width:400px) {
@@ -103,7 +104,7 @@ nav {
     margin-bottom: 10px;
     border-style:solid;
     border-width: 2px;
-    border-radius: 5px;
+    border-radius: 15px 225px 15px 255px/255px 15px 225px 15px;
     width:80px;
     padding:5px;
 }
@@ -112,15 +113,46 @@ nav {
     background-color: rgba(255, 242, 215, 0.842);
 }
 
+.categoriesPickerContainer, .prioritiesPickerContainer {
+    display:none;
+    position: fixed;
+    right:0px;
+}
+.categoriesPicker, .prioritiesPicker {
+    display:grid;
+    grid-template-columns: repeat(3, 50px);
+    grid-template-rows: repeat(6, 50px);
+    box-shadow: 5px 5px 5px rgba(128, 98, 40, 0.5);
+    border-style:solid;
+    border-width:1px;
+    border-radius: 15px 225px 15px 255px/255px 15px 225px 15px;
+    background-image: url('listBG.jpg');
+    background-size: contain;
+    box-shadow: 5px 10px 5px rgba(128, 98, 40, 0.5);
+    padding:5px;
+}
+.prioritiesPicker {
+    grid-template-columns: 50px;
+    grid-template-rows: repeat(3, 50px);
+}
+
+.categoriesPicker .icon, .prioritiesPicker .icon {
+    width:30px;
+    margin-left: 10px;
+}
+
+
+
 .contentContainer {
     align-self: stretch;
     width: 100%;
     padding:10px;
     font-family: 'Rocksalt', cursive;
+    
 }
 
 .assetContainer {
-    border-radius: 4px;
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
     padding: 15px;
     margin-top: 30px;
     background-image: url('listBG.jpg');
@@ -156,10 +188,16 @@ input.itemDueDate {
     grid-template-areas: "title icon edit delete";
 
 }
+
 .icon#addItem {
     margin-left:50%;
     margin-top:10px;
     width:30px;
+}
+.icon#addItem, .icon#addProject {
+    margin-left:50%;
+    margin-top:30px;
+    width:50px;
 }
 
 .icon#sort {
@@ -168,14 +206,9 @@ input.itemDueDate {
 }
 .icon#priority, .icon#category{
     width:30px;
-    grid-area: 'icon';
+    
 }
-.icon#edit {
-    grid-area:'edit';
-}
-.icon#delete {
-    grid-area:'delete';
-}
+
 
 /* title,
     project,
