@@ -116,7 +116,7 @@ const interfacer = (function() {
         const itemDueDate = createNode('input', 'itemDueDate', format(item.dueDate, 'MM/d/yyyy H:mm'), 'Month/Day/Year');
         itemDueDate.type = 'date';
         itemDueDate.value = format(item.dueDate, 'yyyy-MM-dd');
-
+        itemDueDate.required="required"
         itemDueDate.addEventListener('change', function() { mediator.setItemDueDate(item, this.value)});
         
 
@@ -195,6 +195,8 @@ const mediator = (function() {
 
     const setItemDueDate = function(item, newDate) {
         console.log(newDate);
+        if (!newDate)
+            return;
         itemsHandler.setItemDate(item, parseISO(newDate));
         sort(sortingType);
     }
