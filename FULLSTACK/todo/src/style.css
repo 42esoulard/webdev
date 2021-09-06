@@ -1,6 +1,36 @@
+@font-face {
+    font-family: 'Allison';
+    src: url('./Allison-Regular.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nothing';
+    src: url('./NothingYouCouldDo-Regular.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Rocksalt';
+    src: url('./RockSalt-Regular.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fred';
+    src: url('./FrederickatheGreat-Regular.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
 
 body {
-    background-color: rgb(255, 199, 192);
+    background-image: url('bg.jpg');
+    background-size: cover;
+    background-position-x: -100px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -9,12 +39,38 @@ body {
 
 header {
     text-align:center;
-    border-style: solid;
+    background-image: url('bg.jpg');
+    background-size:cover;
+    
+}
+header .title {
+    font-family: 'Fred', cursive;
+    font-size: 50px;
+    margin: 15px;
+    background-image: url('bg.jpg');
+    background-size:contain;
+    width:300px;
+}
+
+@media (max-width:400px) {
+    header .title {
+        max-width:400px;
+    }
+}
+
+header .motto {
+    background-image: url('bg.jpg');
+    background-size:contain;
+    padding: 8px;
+    font-family: 'Nothing', cursive;
+    font-size: 16px;
 }
 
 footer {
     text-align: center;
-    border-style: solid;
+    border-top-style: solid;
+    font-family: 'Rocksalt', cursive;
+    font-size:8px;
 }
 
 main {
@@ -26,8 +82,9 @@ main {
 
 
 nav {
+    background-image: url('bg.jpg');
+    background-size:auto;
     align-self:stretch;
-    background-color: aquamarine;
     padding: 15px;
     text-align: center;
 }
@@ -39,33 +96,81 @@ nav {
     padding-left: 0px;
 }
 .navButton {
+    font-family:'Fred', cursive;
+    font-size: 15px;
     margin-bottom: 10px;
     border-style:solid;
     border-radius: 5px;
+    width:80px;
     padding:5px;
 }
 .navButton:hover {
     transition:0.8s;
-    background-color: blueviolet;
+    background-color: rgba(255, 242, 215, 0.842);
 }
 
 .contentContainer {
-    background-color: rgb(182, 113, 247);
     align-self: stretch;
     width: 100%;
     padding:10px;
+    font-family: 'Rocksalt', cursive;
 }
 
 .assetContainer {
-    border-style: solid;
-    border-radius: 10px;
+    border-radius: 4px;
+    padding: 15px;
+    margin-top: 30px;
+    background-image: url('listBG.jpg');
+    background-size: contain;
 }
 .itemContainer {
+    border-radius: 10px;
     display: grid;
-    background-color: red;
+    background-color: rgba(255, 250, 227, 0.575);
     width:100%;
-    grid-template-columns: 20px 0.8fr 120px 20px 20px;
-    grid-template-rows: 20px;
+    grid-template-columns: 30px 0.8fr 120px 30px 30px 20px 20px;
+    grid-template-rows: 40px;
+    margin: 5px;
+    align-items: center;
+    font-family: 'Nothing', cursive;
+}
+
+input.itemDueDate {
+    font-family: 'Fred', cursive;
+    background:none;
+    border-style:none;
+}
+.icon {
+    width: 18px;
+    height:auto;
+}
+
+.assetTitle {
+    display:grid;
+    grid-template-columns: 1fr 40px 20px 20px;
+    grid-template-rows: 40px;
+    grid-template-areas: "title icon edit delete";
+
+}
+.icon#addItem {
+    margin-left:50%;
+    margin-top:10px;
+    width:30px;
+}
+
+.icon#sort {
+    padding:5px;
+    padding-top: 15px;
+}
+.icon#priority, .icon#category{
+    width:30px;
+    grid-area: 'icon';
+}
+.icon#edit {
+    grid-area:'edit';
+}
+.icon#delete {
+    grid-area:'delete';
 }
 
 /* title,

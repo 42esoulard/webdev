@@ -2,14 +2,20 @@ import { compareDesc } from 'date-fns';
 
 export {itemsHandler}
 
-const item = (dueDateStr, title='New Item', project='',
-             priority='medium', category='') => {
+const item = (dueDateStr='', title='New Item', project='',
+             priority='medium', category='default') => {
     title,
     project,
     priority,
     category;
 
-    let dueDate = new Date(dueDateStr)
+    let dueDate;
+    if (dueDateStr)
+        dueDate = new Date(dueDateStr);
+    else {
+        dueDate = new Date();
+        dueDate.setDate(dueDate.getDate() + 1);
+    }
     let notes = '';
 
     let done = false;
@@ -42,8 +48,14 @@ const item = (dueDateStr, title='New Item', project='',
 
 const itemsHandler = (function() {
     let itemsList = new Array();
-    let categoriesList = new Array();
+    
     let projectsList = new Array();
+    let categoriesList = ['animals', 'cat', 'existencialCrisis', 'default', 
+                        'diet', 'family', 'groceries', 
+                        'health', 'house', 'mentalHealth', 
+                        'movies', 'music', 'podcasts', 
+                        'reading', 'social', 'sport',
+                        'study', 'travel', 'work'];
     let prioritiesList = ['high', 'medium', 'low'];
 
 
@@ -59,6 +71,11 @@ const itemsHandler = (function() {
             projectsList.push(item.project);
     }
 
+    const setItemDate = function(item, date) {
+        item.dueDate = date;
+        sortItemsByDueDate();
+    }
+
     const getAssetList = function(type) {
         console.log('here');
         switch (type) {
@@ -72,13 +89,14 @@ const itemsHandler = (function() {
 
     }
 
-    const createNewItem = function(dueDate, title, project='') {
-        let newItem = item(dueDate, title, project);
+    const createNewItem = function(parentType, parentName) {
+        let newItem = item();
+        newItem[parentType] = parentName;
         // newItem.project = project;
         // newItem.category = project.category;
         itemsList.push(newItem);
-        if (!categoriesList.includes(newItem.category))
-            categoriesList.push(newItem.category);
+        // if (!categoriesList.includes(newItem.category))
+        //     categoriesList.push(newItem.category);
         if (!projectsList.includes(newItem.project))
             projectsList.push(newItem.project);
         sortItemsByDueDate();
@@ -143,6 +161,7 @@ const itemsHandler = (function() {
         setItemCategory,
         setItemProject,
         getAssetList,
+        setItemDate,
     }
 
 })();
