@@ -84,6 +84,19 @@ touch src/style.css && echo -e "import './style.css'" > src/index.js
 # echo -e "import './mySuperCoolImage.png'" > src/index.js
 # echo -e "import './mySuperCoolFont.tff'" > src/index.js
 
+# JS SYNTAX CHECK with eslint VScode extension 
+# First install ESLint from the VScode Extensions menu
+# then to install eslint globally, launch
+# npm install -g eslint
+echo -e "${LPURPLE}Initializing .eslintrc file for syntax checking in this repository...${NC}"
+eslint --init
+# JS STYLE REFORMATTING with Prettier VScode extension 
+# First install Prettier from the VScode Extensions menu
+echo -e "${LPURPLE}Initializing Prettier module for style reformatting in this repository...${NC}"
+npm install prettier -D --save-exact
+echo -e "${LPURPLE}Done! [Use cmd + shift + I to format open file]${NC}"
+
+
 echo -e "${LPURPLE}Project ready to launch! [npx webpack --watch]${NC}"
 # TO COMPILE AND ACTUALIZE WITH EACH CHANGE
 # echo -e "${LPURPLE}Launching webpack --watch...${NC}"

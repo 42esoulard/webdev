@@ -3,11 +3,12 @@ import { compareDesc } from 'date-fns';
 export {itemsHandler}
 
 const item = (dueDateStr='', title='New Item', project='default',
-             priority='medium', category='default') => {
+             priority='medium', category='default', done=false) => {
     title,
     project,
     priority,
-    category;
+    category,
+    done;
 
     let dueDate;
     if (dueDateStr)
@@ -16,30 +17,21 @@ const item = (dueDateStr='', title='New Item', project='default',
         dueDate = new Date();
         dueDate.setDate(dueDate.getDate() + 1);
     }
-    let notes = '';
-
-    let done = false;
-    let checklist = new Array();
-    let archived = false;
-    const info = function() {
-        return `Item DD[${dueDate}] title [${title}] in [${project}]`
-    }
 
     const getInfos = function() {
-        return {title, project, description, dueDate, priority, notes, category}
+        return {'title':title, 'project':project, 'dueDate':dueDate, 
+            'priority':priority, 'category':category, 'done':done}
     }
 
-
-
     return {
+
         title,
         project,
         dueDate,
         priority,
-        notes,
         category,
         done,
-        info,
+   
         getInfos,
     }
 }
@@ -91,31 +83,60 @@ const itemsHandler = (function() {
             default:
                 return prioritiesList;
         }
-
     }
 
     const createNewItem = function(parentType, parentName) {
         let newItem = item();
         newItem[parentType] = parentName;
-        // newItem.project = project;
-        // newItem.category = project.category;
         itemsList.push(newItem);
-        // if (!categoriesList.includes(newItem.category))
-        //     categoriesList.push(newItem.category);
         if (!projectsList.includes(newItem.project))
             projectsList.push(newItem.project);
         sortItemsByDueDate();
         return newItem;
     }
 
+    const importItems = function() {
+        for (let i = 0; i < localStorage.getItem('items_size'); i++) {
+       
+            let newItem = item(localStorage.getItem(`${i}dueDate`), localStorage.getItem(`${i}title`),
+                                   localStorage.getItem(`${i}project`), localStorage.getItem(`${i}priority`), 
+                                   localStorage.getItem(`${i}category`), localStorage.getItem(`${i}done`));
+            
+            
+            newItem.done = ( newItem.done === 'false'? false : true);
+            itemsList.push(newItem);
+            
+            if (!projectsList.includes(newItem.project))
+                projectsList.push(newItem.project);
+        }
+        sortItemsByDueDate();
+    }
+
+    const importProjects = function() {
+        for (let i = 0; i < localStorage.getItem('projects_size'); i++) {
+
+            if (!projectsList.includes(localStorage.getItem(`${i}projectList`)))
+                projectsList.push(localStorage.getItem(`${i}projectList`));
+        }
+    }
+
     const createNewProject = function(title) {
-        projectsList.push(title);
+        let idx = 0;
+        let editedTitle = title;
+        while (projectsList.includes(editedTitle))
+            editedTitle = `${title} #${idx++}`;
+        projectsList.push(editedTitle);
     }
 
     const editProjectName = function(oldName, newName) {
-        if (!projectsList.includes(oldName))
-            return;
-        projectsList[projectsList.indexOf(oldName)] = newName;
+        if (projectsList.includes(oldName))
+            projectsList.slice(projectsList.indexOf(oldName), 1);
+        let editedNewName = newName;
+        let idx = 0;
+        while (projectsList.includes(editedNewName))
+            editedNewName = `${newName} #${idx++}`;
+        projectsList[projectsList.indexOf(oldName)] = editedNewName;
+        return editedNewName;
     }
 
     const setProject = function(item, newProject) {
@@ -126,7 +147,6 @@ const itemsHandler = (function() {
         if (itemsList.indexOf(item) >= 0)
             itemsList.splice(itemsList.indexOf(item), 1);
     }
-
 
     const deleteItemsByAsset = function(type, asset) {
         itemsList.forEach(item => {
@@ -166,23 +186,26 @@ const itemsHandler = (function() {
 
     return {
         createNewItem,
-        createNewProject,
-        editProjectName,
-        setProject,
-        deleteItem,
-        printAllItemsInfo,
-        sortItemsByDueDate,
-        getItems,
-        getItemsInfos,
-        deleteItemsByAsset,
-
         setItemCategory,
         setItemPriority,
         setItemProject,
         setItemTitle,
         setItemDate,
+        deleteItem,
+        deleteItemsByAsset,
+
+        sortItemsByDueDate,
+        getItems,
+        getItemsInfos,
+        printAllItemsInfo,
+
+        createNewProject,
+        editProjectName,
+        setProject,
 
         getAssetList,
+        
+        importItems,
+        importProjects,
     }
-
 })();

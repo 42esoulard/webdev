@@ -1,0 +1,10 @@
+MOBILE MENUS:
+/!\ NO HAMBURGER MENU (hidden long list)
+- tabs at the bottom for the main functionalities  ( <= 5 ), with one
+default active tab highlighted
+If needed, add a 'more' tab with secondary functionalities
+- scrollable tabs or adapted to screen size (what doesn't fit goes in 'more')
+- dropdown menu with an arrow
+- Hamburger menu might be used for
+secondary functionalities, if the main ones are
+already readily available from the get go 

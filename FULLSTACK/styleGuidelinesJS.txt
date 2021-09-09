@@ -1,0 +1,6 @@
+MY FAVOURITE
+https://standardjs.com/rules.html
+
+or AIRBNB GUIDE here https://github.com/airbnb/javascript
+ 
+Or Google here https://google.github.io/styleguide/jsguide.html

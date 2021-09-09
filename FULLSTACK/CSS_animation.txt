@@ -1,0 +1,246 @@
+https://www.youtube.com/watch?v=8kK-cA99SA0&list=PLqGj3iMvMa4LvJ8VctoXnPI0dtE40wfid
+
+-----------------------
+   1) CSS TRANSITION
+-----------------------
+https://www.youtube.com/watch?v=8kK-cA99SA0
+
+    .element {
+      transition: [property] [duration] [ease] [delay];
+    }
+  property: the property which will be acted upon
+  duration: how long it lasts
+  ease: in? out?
+  delay: time before anim
+
+      transition: opacity 300ms ease-in-out 1s;
+
+What can we animate?
+  - font-size (size)
+  - background-color (change color)
+  - width (grow/shrink elem)
+  - left (position)
+
+  (we cant animate: display, font-family, position...)
+
+  The most performant stuff to animate:
+    position (translate)
+    scale
+    rotation
+    opacity
+  
+Triggering a transition:
+  - hover pseudoclass : object:hover
+  - clicked pseudoclass : object:clicked
+  - class change
+
+
+    .elementParent {
+      width: 200px;
+    }
+
+    .element {
+      transition: transform 300ms ease-in-out;
+      pointer-events: none; //to disable events! AMAZING
+    }
+
+    .elementParent:hover .element{
+      transform:translate(200px, 150px) rotate(20deg);
+    }
+
+----------------------------------------------
+      2) CSS ANIMATION AND KEYFRAMES
+----------------------------------------------
+
+KEYFRAMES
+  Are on their own outside of class stuff
+    @keyframes [name] {
+      from {
+        [styles]
+      }
+      to {
+        [styles]
+      }
+    }
+
+    example:
+    .myObject {
+      animation: myFrames 2s ease-in-out 0s infinite
+    }//calls keyframe 'myFrames'
+    @keyframes myFrames {
+      from {
+        height:200px;
+      }
+      to {  
+        height:600px;
+      } 
+    }
+    or 
+    @keyframes myFrames {
+      0% {
+        height:200px;
+      }
+      60% {  
+        height:600px;
+      } 
+      100% {  
+        height:600px;
+      } 
+    }
+
+ANIMATION
+.elem {
+  animation: [keyframes name] [duration] [timing-function] [delay] [iteration-count] [direction] [fill-mode] [play-state];
+}
+animation: myframes 2s ease-in-out 2s infinite normal forwards running
+
+direction is the order of frames, can be normal or reverse
+fill-mode is the final appearance.
+fill-mode: forwards; IS SO COOL, if you add an element with this class, it'll appearance
+with its animation
+play-state: whether it's running or paused
+
+----------------------------------------------
+      3) WHY USE ANIMATIONS
+----------------------------------------------
+
+- To orientate the user:
+  give them subliminal information about where the page is leading you 
+  (sliding pages, etc)
+- Functional change
+  (toggle, colour change matching on/off, show a menu
+  going from open to closed, ...)
+- Animate inclusion of new element to let them know
+  what just happened and where everything is positioned
+  now
+- Highlight important information, little
+  animations which attract the attention to important infos
+  (pulsing, moving, color changing,..)
+- Visual feedback: after a user interaction, do an animation
+  which reflects that the user action worked
+  (ex send email: element goes up and out)
+- System status: show progress bar!!
+
+----------------------------------------------
+      4) DROP DOWN MENU
+----------------------------------------------
+Give drop menu display:none
+on hover:
+  .menu1 {
+    display:block
+    opacity:0;
+    animation: menuDisplay1 300ms ease-in-out forwards
+  }
+  @keyframes menuDisplay1 {
+    0% {
+      opacity:0;
+      transform:rotateY(-90deg) translateY(30px);
+    }
+    100% {
+      opacity:1;
+      transform:rotateY(0deg) translateY(0px);
+    }
+  }
+
+.menu2 {
+    display:block
+    opacity:0;
+    animation: menuDisplay2 300ms ease-in-out forwards
+    transform-origin: top center;
+  }
+  @keyframes menuDisplay2 {
+    0% {
+      opacity:0;
+      transform:rotateX(-90deg)
+    }
+    60% {
+      transform: rotateX(50deg)
+    }
+    100% {
+      opacity:1;
+      transform:rotateX(0deg)
+    }
+  }
+
+.menu3 {
+    display:block
+    opacity:0;
+    animation: menuDisplay3 300ms ease-in-out forwards
+    transform-origin: top center;
+  }
+  @keyframes menuDisplay3 {
+    0% {
+      opacity:0;
+      transform:scale(0.3) translateY(-60px)
+    }
+    80% {
+      transform: scale(1.2) translateY(10px)
+    }
+    100% {
+      opacity:1;
+      transform:scale(1) translateY(0px)
+    }
+  }
+
+.menu4 {
+    display:block
+    opacity:0;
+    animation: menuDisplay4 300ms ease-in-out forwards
+    transform-origin: top right;
+  }
+  @keyframes menuDisplay4 {
+    0% {
+      opacity:0;
+      transform:rotate(-30deg) translateX(30px)
+    }
+    100% {
+      opacity:1;
+      transform:rotate(0deg) translateX(0px)
+    }
+  }
+
+----------------------------------------------
+      5) NOTIFICATIONS / ALERTS / MENUS
+----------------------------------------------
+
+300ms is usually good, don't make them too long
+Play with animation + keyframes to give it lifelike popping up
+or transition
+
+----------------------------------------------
+      6) SPINNER / LOADER
+----------------------------------------------
+Use scale for a pulse, or rotate/translate for a turning shape
+  .spinner {
+    background: pink;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border: 4px solid transparent;
+    border-top-color: orangered;
+    border-bottom-color: orangered;
+    animation: spinny 2x linear infinite
+  }
+
+  @keyframes spinny {
+    0%
+      transform: rotate(0deg) scale(1)
+    50% 
+      transform:rotate(45deg) scale(1.2)
+    100%
+      transform: rotate(360deg) scale(1)
+  }
+
+----------------------------------------------
+      7) FORM
+----------------------------------------------
+for rotate to work 3d, add perspective: 1000px to the elem's parent
+Animate pages in and out
+
+----------------------------------------------
+      8) PAGE BUILDING ANIMATION
+----------------------------------------------
+How to have elements arrive in a cool fashion
+In JS, add elements class one at a time, with a timeout for it to wait btw elements 
+Start with opacity 0 for elements.
+In the class, put the animation with keyframes

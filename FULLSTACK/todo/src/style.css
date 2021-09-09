@@ -54,11 +54,6 @@ header .title {
     border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
 }
 
-@media (max-width:400px) {
-    header .title {
-        max-width:400px;
-    }
-}
 
 header .motto {
     background-image: url('bg.jpg');
@@ -66,13 +61,35 @@ header .motto {
     padding: 8px;
     font-family: 'Nothing', cursive;
     font-size: 16px;
+    display:flex;
+    justify-content: center;
+}
+header .mottoText {
+    background-image: url('bg.jpg');
+    width: 400px;
+    background-position: -60%;
 }
 
 footer {
     text-align: center;
-    border-top-style: solid;
-    font-family: 'Rocksalt', cursive;
-    font-size:8px;
+    /* border-top-style: solid; */
+    font-family: 'Allison', cursive;
+    font-size:15px;
+    background-image: url('bg.jpg');
+    background-size:contain;
+    padding: 8px;
+    padding-top:20px;
+    font-family: 'Nothing', cursive;
+    /* font-size: 16px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+footer div {
+    background-image: url('bg.jpg');
+    width: 400px;
+    background-position: -60%;
 }
 
 main {
@@ -107,16 +124,31 @@ nav {
     border-radius: 15px 225px 15px 255px/255px 15px 225px 15px;
     width:80px;
     padding:5px;
+    background-image: url('bg.jpg');
+    background-position: -60%;
 }
 .navButton:hover {
     transition:0.8s;
-    background-color: rgba(255, 242, 215, 0.842);
+    border-color: rgba(255, 242, 215, 0.842);
+}
+
+
+@media (max-width:600px) {
+    nav {
+        padding:5px;
+    }
+    .navButton {
+        width: 40px;
+        font-size:10px;
+    }
 }
 
 .categoriesPickerContainer, .prioritiesPickerContainer {
     display:none;
     position: fixed;
-    right:0px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .categoriesPicker, .prioritiesPicker {
     display:grid;
@@ -136,7 +168,7 @@ nav {
     grid-template-rows: repeat(3, 50px);
 }
 
-.categoriesPicker .icon, .prioritiesPicker .icon {
+.categoriesPicker .categoriesPickerIcon, .prioritiesPicker .prioritiesPickerIcon {
     width:30px;
     margin-left: 10px;
 }
@@ -159,17 +191,28 @@ nav {
     background-size: contain;
     box-shadow: 5px 10px 5px rgba(128, 98, 40, 0.5);
 }
+
 .itemContainer {
     border-radius: 10px;
     display: grid;
     background-color: rgba(255, 250, 227, 0.575);
     width:100%;
-    grid-template-columns: 30px 0.8fr 120px 30px 30px 20px 20px;
-    grid-template-rows: 40px;
     margin: 5px;
+    padding-left:5px;
+    padding-top: 5px;
     align-items: center;
     font-family: 'Nothing', cursive;
+    display:block;
 }
+
+.itemTitle {
+    text-overflow:clip;
+    overflow-y: scroll;
+    height: 30px;
+    max-width:80%;
+
+}
+
 
 input.itemDueDate {
     font-family: 'Fred', cursive;
@@ -180,13 +223,20 @@ input.itemDueDate {
     width: 18px;
     height:auto;
 }
+.assetHeader {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height:30px;
 
+}
+.assetHeader #delete {
+    height:20px;
+}
 .assetTitle {
-    display:grid;
-    grid-template-columns: 1fr 40px 20px 20px;
-    grid-template-rows: 40px;
-    grid-template-areas: "title icon edit delete";
-
+    overflow-y: scroll;
+    height: 30px;
+    max-width: 80%;
 }
 
 .icon#addItem {
@@ -206,9 +256,15 @@ input.itemDueDate {
 }
 .icon#priority, .icon#category{
     width:30px;
-    
 }
-
+img.selectedForPicker {
+    background-image: url('bg.jpg');
+    background-size: cover;
+    border-radius: 15px;
+    border-style: solid;
+    border-color: rgb(233, 222, 74);
+    padding:1px;
+}
 
 /* title,
     project,

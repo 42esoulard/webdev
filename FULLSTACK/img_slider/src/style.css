@@ -1,0 +1,36 @@
+
+main {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.frame {
+  max-height:600px;
+  max-width:500px;
+  border-style:solid;
+  border-color: red;
+
+}
+
+.imgContainer {
+  display: flex;
+  flex-direction: row;
+
+  /* animation: slide 2s ease-in-out 0s infinite normal forwards running; */
+
+}
+@keyframes slide {
+  0% {
+
+  }
+  100% {
+    translate: -100% 0%;
+  }
+}
+
+img {
+  height:auto;
+  max-width:500px;
+  max-height: 600px;
+}
+
