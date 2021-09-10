@@ -96,7 +96,7 @@ animation: myframes 2s ease-in-out 2s infinite normal forwards running
 
 direction is the order of frames, can be normal or reverse
 fill-mode is the final appearance.
-fill-mode: forwards; IS SO COOL, if you add an element with this class, it'll appearance
+fill-mode: forwards; IS SO COOL, if you add an element with this class, it'll appear
 with its animation
 play-state: whether it's running or paused
 

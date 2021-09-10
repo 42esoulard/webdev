@@ -20,9 +20,12 @@ echo -e "${LPURPLE}Initializing arborescence...
             L index.js
         dist
             L index.html${NC}"
-touch .gitignore && echo -e 'node_modules/' > .gitignore
-mkdir src && touch src/index.js
-mkdir dist && touch dist/index.html
+touch .gitignore 
+&& echo -e 'node_modules/' > .gitignore
+mkdir src 
+&& touch src/index.js
+mkdir dist 
+&& touch dist/index.html
 
 echo -e '<!DOCTYPE html>
 <html>
@@ -34,9 +37,17 @@ echo -e '<!DOCTYPE html>
 </head>
 
 <body>
-  <header></header>
-  <main></main>
-  <footer></footer>
+  <header>
+    <h1></h1>
+  </header>
+
+  <main>
+  
+  </main>
+
+  <footer>
+    <div>Built by <a href="https://github.com/42esoulard">esoulard</a></div>
+  </footer>
 </body>
 </html>' > dist/index.html
 
@@ -44,7 +55,8 @@ echo -e '<!DOCTYPE html>
 # TINIEST DEFAULT CONFIG WITH CSS, IMG AND FONT IMPORT
 echo -e "${LPURPLE}Initializing webpack.config.js with a simple default config...${NC}"
 touch webpack.config.js \
-&& echo -e "const path = require('path');
+&& echo -e "/* global require module __dirname */
+const path = require('path');
 
 module.exports = {
     entry: './src/index.js',
@@ -79,7 +91,24 @@ module.exports = {
 # TO IMPORT CSS/IMAGES/FONTS
 echo -e "${LPURPLE}Initializing .css file...${NC}"
 npm install --save-dev style-loader css-loader
-touch src/style.css && echo -e "import './style.css'" > src/index.js
+touch src/style.css 
+&& echo -e "/* @font-face {
+  font-family: 'myFont';
+  src: url('./my_font.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+} */
+
+body, html {
+  padding: 0px;
+  margin:0px;
+  min-height:100%;
+}
+
+h1 {
+  margin: 0px;
+}" > src/style.css
+echo -e "import './style.css'" > src/index.js
 # mv mySuperCoolImage.png src/ && mv mySuperCoolFont.tff src/
 # echo -e "import './mySuperCoolImage.png'" > src/index.js
 # echo -e "import './mySuperCoolFont.tff'" > src/index.js
