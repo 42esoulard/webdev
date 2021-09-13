@@ -5,16 +5,87 @@
 <title>Document</title>
 </head>
 <body>
+  <div>
+    <input type=text class='search'>
+    <button id='search'>Search</button>
+  </div>
+  <button id='refresh'>New Cat</button>
   <img src="#">
+  
   <script>
+    const DEFAULT_SEARCH = 'cats';
+    let search = DEFAULT_SEARCH;
     const img = document.querySelector('img');
-    fetch('https://api.giphy.com/v1/gifs/translate?api_key=awFIIMXBJi4m2h9xT5SThroWFRgPLVvl&s=cats', {mode: 'cors'})
-    .then(function(response) {
-      return (response.json());
-    })
-    .then(function(response) {
-      img.src = response.data.images.original.url;
-    })
-</script>
+    const searchInput = document.querySelector('input');
+
+    const newSearch = () => {
+      search = searchInput.value;
+      searchInput.value = '';
+      newImage();
+      search = DEFAULT_SEARCH;
+    }
+
+    const newImage = () => {
+      fetch(`https://api.giphy.com/v1/gifs/translate?api_key=awFIIMXBJi4m2h9xT5SThroWFRgPLVvl&s=${search}`, {mode: 'cors'})
+      .then(response => {
+        return (response.json());
+      })
+      .then(response => {
+        img.src = response.data.images.original.url;
+      })
+      .catch(err => {
+        img.src = 'error.png';
+        console.error(err);
+      })
+    };
+
+    newImage();
+
+    const refreshButton = document.querySelector('button[id=\'refresh\']');
+    refreshButton.addEventListener('click', newImage);
+    
+    const searchButton = document.querySelector('button[id=\'search\']');
+    searchButton.addEventListener('click', newSearch);
+
+  </script>
+
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    img {
+      max-height:400px;
+    }
+    button#refresh {
+      background-color: pink;
+      width:min-content;
+      border-radius:100%;
+      border-color:aquamarine;
+      border-style:groove;
+      border-width:5px;
+      margin:10px;
+      padding:10px;
+      font-family: Arial, sans-serif;
+      font-weight:bolder;
+    }
+    button#refresh:hover {
+      animation: spin 300ms ease-in-out forwards;
+    }
+    @keyframes spin {
+      0% {
+        rotate:0deg;
+      }      
+      100% {
+        rotate:360deg;
+      }
+    }
+    button#refresh:active {
+      background-color: crimson;
+    }
+  </style>
+
 </body>
 </html>

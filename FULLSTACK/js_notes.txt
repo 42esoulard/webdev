@@ -634,7 +634,7 @@ Promises:
 Serves data.
 You generally need an account one the service and request an API key before
 making requests to an API.
-fetch returns a promise!
+fetch returns a promise that resolves a response object!
 
     // URL (required), options (optional): WE NEED TO ADD MODE CORS TO ALLOW OUTSIDE SOURCES OR THE BROWSER WILL REFUSE
     fetch('https://url.com/some/url', {mode: 'cors'})
@@ -647,3 +647,14 @@ fetch returns a promise!
 
 http://api.openweathermap.org/data/2.5/weather?q=London&APPID=f4aa4eb90aa3aa36c5685d8da7a26dff
 
+    fetch('https://url.com/some/url', {mode: 'cors'})
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            response.json()
+        })
+        .then(data => console.log(data));
+        .catch(error => console.error(error))
+
+In second argument, fetch() can actually take proper HTTP header fields for customized requests.
