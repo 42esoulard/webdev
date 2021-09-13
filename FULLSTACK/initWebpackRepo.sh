@@ -20,12 +20,9 @@ echo -e "${LPURPLE}Initializing arborescence...
             L index.js
         dist
             L index.html${NC}"
-touch .gitignore 
-&& echo -e 'node_modules/' > .gitignore
-mkdir src 
-&& touch src/index.js
-mkdir dist 
-&& touch dist/index.html
+touch .gitignore && echo -e 'node_modules/' > .gitignore
+mkdir src && touch src/index.js
+mkdir dist && touch dist/index.html
 
 echo -e '<!DOCTYPE html>
 <html>
@@ -69,18 +66,30 @@ module.exports = {
     module: {
         rules: [
         {
-            test: /\.css$/i,
+            test: /\.css$/i, //import .css files
             use: ['style-loader', 'css-loader'],
         },
         {
-            test: /\.(png|svg|jpg|jpeg|gif)$/i,
+            test: /\.(png|svg|jpg|jpeg|gif)$/i, //import image files
             type: 'asset/resource',
         },
         {
-            test: /\.(woff|woff2|eot|ttf|otf)$/i,
+            test: /\.(woff|woff2|eot|ttf|otf)$/i, //import font files
             type: 'asset/resource',
         },
-        ],
+        { //comment out this rule to not use Babel
+          test: /\.m?js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                ['@babel/preset-env', { targets: "defaults" }]
+              ]
+            }
+          }
+        },
+      ],
     },
 };"  > webpack.config.js
 # If you prefer and feel wild, create it by running
@@ -91,7 +100,7 @@ module.exports = {
 # TO IMPORT CSS/IMAGES/FONTS
 echo -e "${LPURPLE}Initializing .css file...${NC}"
 npm install --save-dev style-loader css-loader
-touch src/style.css 
+touch src/style.css \
 && echo -e "/* @font-face {
   font-family: 'myFont';
   src: url('./my_font.ttf') format('truetype');
@@ -124,6 +133,11 @@ eslint --init
 echo -e "${LPURPLE}Initializing Prettier module for style reformatting in this repository...${NC}"
 npm install prettier -D --save-exact
 echo -e "${LPURPLE}Done! [Use cmd + shift + I to format open file]${NC}"
+
+echo -e "${LPURPLE}Initializing Babel module for transpiling in this repository...${NC}"
+npm install -D babel-loader @babel/core @babel/preset-env webpack
+echo -e "${LPURPLE}Done! [Use cmd + shift + I to format open file]${NC}"
+
 
 
 echo -e "${LPURPLE}Project ready to launch! [npx webpack --watch]${NC}"

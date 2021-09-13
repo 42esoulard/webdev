@@ -551,3 +551,99 @@ SOLID JS:
     - Publish/Subscribe: a module updating a value calls the mediator's 
     'publish' method, an object needing to be updated on the value calls 'subscribe'.
     If the value is modified, the receiver is automatically notified
+
+
+
+------------------------------------------------------------------
+
+-----------------------
+         JSON
+-----------------------
+
+convert JSON string to a proper JS object:
+JSON.parse(/*some JSON string*/)
+
+convert a JS object to a proper JSON string:
+JSON.stringify(myObject)
+JSON.stringify(myArray)
+
+Useful for local storage:
+    // Storing data:
+    const myObj = {name: "John", age: 31, city: "New York"};
+    const myJSON = JSON.stringify(myObj);
+    localStorage.setItem("testJSON", myJSON);
+
+    // Retrieving data:
+    let text = localStorage.getItem("testJSON");
+    let obj = JSON.parse(text);
+    document.getElementById("demo").innerHTML = obj.name; 
+
+
+------------------------------------------------------------------
+
+-----------------------
+        ASYNC
+-----------------------
+Callback: function passed to another function as argument
+  For program not to wait for slow DL or UL or server request to execute.
+    downloadPhoto('http://coolcats.com/cat.gif', handlePhoto)
+
+    function handlePhoto (error, photo) {
+    if (error) console.error('Download error!', error)
+    else console.log('Download finished', photo)
+    }
+
+    console.log('Download started')
+  1) Don't nest functions! Name them and declare them before calling them
+  2) Separate functions in thematic files (=modules)
+  3) Handle every error. Reserve the first param of the callback function for error.
+  In function, check if error 
+    var fs = require('fs')
+    fs.readFile('/Does/not/exist', handleFile)
+    function handleFile (error, file) {
+    if (error) return console.error('Uhoh, there was an error', error)
+    // otherwise, continue on and use `file` in your code
+    }
+/!\ CALLBACKS ARE DANGEROUS: how do we trust the called function to 
+call the callback ? To only call it once ? 
+
+Promises: 
+    function getData() {
+        return new Promise(function(resolve, reject) {
+            let script = document.createElement('script');
+            script.src = src;
+
+            script.onload = () => resolve(script);
+            script.onerror = () => reject(new Error(`Script load error for ${src}`));
+
+            document.head.append(script);
+        });
+    }
+    const myData = getData() // if this is refactored to return a Promise...
+
+    myData.then(function(data){ // .then() tells it to wait until the promise is resolved
+        const pieceOfData = data['whatever'] // and THEN run the function inside
+    })
+
+------------------------------------------------------------------
+
+-----------------------
+        API
+-----------------------
+
+Serves data.
+You generally need an account one the service and request an API key before
+making requests to an API.
+fetch returns a promise!
+
+    // URL (required), options (optional): WE NEED TO ADD MODE CORS TO ALLOW OUTSIDE SOURCES OR THE BROWSER WILL REFUSE
+    fetch('https://url.com/some/url', {mode: 'cors'})
+        .then(function(response) {
+            // Successful response :)
+    })
+        .catch(function(err) {
+            // Error :(
+    });
+
+http://api.openweathermap.org/data/2.5/weather?q=London&APPID=f4aa4eb90aa3aa36c5685d8da7a26dff
+

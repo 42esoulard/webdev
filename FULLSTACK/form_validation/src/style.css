@@ -1,0 +1,48 @@
+@font-face {
+  font-family: 'Nothing';
+  src: url('./NothingYouCouldDo-Regular.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+body, html {
+  padding: 0px;
+  margin:0px;
+  height:700px;
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items:center;
+}
+
+.formContainer {
+  background-color: rgb(155, 43, 43);
+  box-shadow: 5px 10px 5px rgba(136, 46, 43, 0.37);
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  padding: 40px;
+  margin-top: 60px;
+}
+
+label {
+  font-family: 'Nothing', cursive;
+}
+
+input {
+  display:block;
+  margin-bottom: 20px;
+}
+input.invalid {
+  border: 2px dashed red;
+}
+
+footer {
+  padding-top: 20px;
+  margin-top: 60px;
+  background-color: black;
+  width: 100%;
+  height: 100px;
+  color: rgb(160, 33, 33);
+  font-family: 'Nothing', cursive;
+  text-align: center;
+}

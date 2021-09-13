@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Validation Exercise</title>
+  <script src="main.js" defer></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <header>
+  </header>
+
+  <main>
+    <div class='formContainer'>
+      <form>
+        <label for='email'>Your email:*</label>
+        <input required type="email" name='email' id='email' placeholder='address@xyz.com' maxlength="500">
+        <label for='country'>Country:*</label>
+        <input required type="text" name='country' id='country' placeholder="Your country" minlength="2" maxlength="30">
+        <label for='zip'>Zip code:*</label>
+        <input required type=number name='zip' id='zip' placeholder="Your zip code" min="0" max="1000000">
+        <label for='password'>Password:*</label>
+        <input required type="text" name='password' id='password' placeholder="Password" minlength="8" maxlength="20">
+        <label for='passwordConfirmation'>Please confirm your password:*</label>
+        <input required type="text" name='passwordConfirmation' id='passwordConfirmation' placeholder="Password">
+        <button type='submit'>Submit</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <div>Built by <a href="https://github.com/42esoulard">esoulard</a></div>
+  </footer>
+</body>
+</html>
