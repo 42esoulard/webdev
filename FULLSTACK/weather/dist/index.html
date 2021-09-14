@@ -9,11 +9,74 @@
 
 <body>
   <header>
-    <h1></h1>
+    <h1>What's the Weather Like In...</h1>
+    <div class='searchContainer'>
+      <input class='search' required type='text' placeholder="City name" minlength=3 maxlength=50>
+      <select name='unit'>
+        <option required value='metric'>°C</option>
+        <option value='imperial'>°F</option>
+      </select>
+      <button class='search'>Go!</button>
+    </div>
+
   </header>
 
+  <!-- <main>
+    <div class='locationContainer'>
+      <div class='nameContainer'>
+        <span class='city'>Paris</span>
+        <span class='country'>France</span>
+      </div>
+      <div class='sunContainer'>
+        <span class='sun' id='rise'>7h30</span>
+        <span class='sun' id='set'>20h15</span>
+      </div>
+    </div>
+
+    <div class='timestampsCarrousel'>
+      <div class='timestampContainer'>
+        <div class='primaryDataContainer'>
+          <span class='primary' id='timestamp'>9h</span>
+          <span class='primary' id='weather'>Rain</span>
+          <span class='primary' id='temp'>26°C</span>
+        </div>
+
+        <div class='secondaryDataContainer'>
+          <span class='secondary' id='feelsLike'>32°C</span>
+          <span class='secondary' id='humidity'>92%</span>
+          <span class='secondary' id='windSpeed'>5km/h</span>
+        </div>
+      </div>
+    </div>
+  </main> -->
+
   <main>
-  
+    <div class='locationContainer'>
+      <div class='nameContainer'>
+        <span class='city'></span>
+        <span class='country'></span>
+      </div>
+      <div class='sunContainer'>
+        <span class='sun' id='rise'></span>
+        <span class='sun' id='set'></span>
+      </div>
+    </div>
+
+    <div class='timestampsCarrousel'>
+      <div class='timestamp'>
+        <div class='primaryDataContainer'>
+          <span class='primary' id='timestamp'></span>
+          <span class='primary' id='weather'></span>
+          <span class='primary' id='temp'></span>
+        </div>
+
+        <div class='secondaryDataContainer'>
+          <span class='secondary' id='feelsLike'></span>
+          <span class='secondary' id='humidity'></span>
+          <span class='secondary' id='windSpeed'></span>
+        </div>
+      </div>
+    </div>
   </main>
 
   <footer>
