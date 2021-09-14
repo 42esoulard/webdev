@@ -1,0 +1,21 @@
+/* @font-face {
+  font-family: 'myFont';
+  src: url('./my_font.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+} */
+
+body, html {
+  padding: 0px;
+  margin:0px;
+  min-height:100%;
+}
+
+h1 {
+  margin: 0px;
+}
+
+/* for weather description */
+.capitalize {
+  text-transform: capitalize;
+}

@@ -13,39 +13,36 @@
   <img src="#">
   
   <script>
-    const DEFAULT_SEARCH = 'cats';
-    let search = DEFAULT_SEARCH;
-    const img = document.querySelector('img');
-    const searchInput = document.querySelector('input');
+      const DEFAULT_SEARCH = 'cats';
+      let search = DEFAULT_SEARCH;
+      const img = document.querySelector('img');
+      const searchInput = document.querySelector('input');
 
-    const newSearch = () => {
-      search = searchInput.value;
-      searchInput.value = '';
+      const newSearch = () => {
+        search = searchInput.value;
+        searchInput.value = '';
+        newImage();
+        search = DEFAULT_SEARCH;
+      }
+
+      async function newImage() {
+        try {
+          const response = await fetch(`https://api.giphy.com/v1/gifs/translate?api_key=awFIIMXBJi4m2h9xT5SThroWFRgPLVvl&s=${search}`, { mode: 'cors' })
+          const imgData = await response.json();
+          img.src = response.data.images.original.url;
+        } catch (err) {
+          img.src = 'error.png';
+          console.error(err);
+        }
+      };
+
       newImage();
-      search = DEFAULT_SEARCH;
-    }
 
-    const newImage = () => {
-      fetch(`https://api.giphy.com/v1/gifs/translate?api_key=awFIIMXBJi4m2h9xT5SThroWFRgPLVvl&s=${search}`, {mode: 'cors'})
-      .then(response => {
-        return (response.json());
-      })
-      .then(response => {
-        img.src = response.data.images.original.url;
-      })
-      .catch(err => {
-        img.src = 'error.png';
-        console.error(err);
-      })
-    };
+      const refreshButton = document.querySelector('button[id=\'refresh\']');
+      refreshButton.addEventListener('click', newImage);
 
-    newImage();
-
-    const refreshButton = document.querySelector('button[id=\'refresh\']');
-    refreshButton.addEventListener('click', newImage);
-    
-    const searchButton = document.querySelector('button[id=\'search\']');
-    searchButton.addEventListener('click', newSearch);
+      const searchButton = document.querySelector('button[id=\'search\']');
+      searchButton.addEventListener('click', newSearch);
 
   </script>
 

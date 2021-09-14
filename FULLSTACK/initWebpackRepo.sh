@@ -77,18 +77,25 @@ module.exports = {
             test: /\.(woff|woff2|eot|ttf|otf)$/i, //import font files
             type: 'asset/resource',
         },
-        { //comment out this rule to not use Babel
-          test: /\.m?js$/,
-          exclude: /node_modules/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              presets: [
-                ['@babel/preset-env', { targets: "defaults" }]
-              ]
-            }
-          }
-        },
+        // { //comment out this rule to not use Babel
+        //   test: /\.m?js$/,
+        //   exclude: /node_modules/,
+        //   use: {
+        //     loader: 'babel-loader',
+        //     options: {
+        //       presets: [
+        //         [
+        //           '@babel/preset-env', 
+        //           { 
+        //             useBuiltIns: 'usage',
+        //             corejs: 3,
+        //             targets: "defaults"
+        //           }
+        //         ]
+        //       ]
+        //     }
+        //   }
+        // },
       ],
     },
 };"  > webpack.config.js
@@ -135,7 +142,7 @@ npm install prettier -D --save-exact
 echo -e "${LPURPLE}Done! [Use cmd + shift + I to format open file]${NC}"
 
 echo -e "${LPURPLE}Initializing Babel module for transpiling in this repository...${NC}"
-npm install -D babel-loader @babel/core @babel/preset-env webpack
+npm install -D babel-loader @babel/core @babel/preset-env regenerator-runtime core-js webpack
 echo -e "${LPURPLE}Done! [Use cmd + shift + I to format open file]${NC}"
 
 

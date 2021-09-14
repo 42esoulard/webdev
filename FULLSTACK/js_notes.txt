@@ -658,3 +658,37 @@ http://api.openweathermap.org/data/2.5/weather?q=London&APPID=f4aa4eb90aa3aa36c5
         .catch(error => console.error(error))
 
 In second argument, fetch() can actually take proper HTTP header fields for customized requests.
+
+------------------------------------------------------------------
+
+-----------------------
+      ASYNC/AWAIT
+-----------------------
+    async function getPersonsInfo(name) {
+        const people = await server.getPeople();
+        const person = people.find(person => { return person.name === name });
+        return person;
+    }
+
+async:
+    keyword to be able to sue await in the function
+    an async function returns a promise
+await:
+    tells js to wait for action to finish before continuing the function
+Since it returns a promise, we handle errors with catch,
+either on the function's return:
+        asyncFunctionCall().catch(err => {
+            console.error(err)
+        });
+
+    or within the function:
+        async function getPersonsInfo(name) {
+            try {
+                const people = await server.getPeople();
+                const person = people.find(person => { return person.name === name });
+                return person;
+            } catch (error) {
+                // Handle the error any way you'd like
+            }
+        }
+
