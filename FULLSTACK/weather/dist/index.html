@@ -1,86 +1,101 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>WEATHER FORECAST</title>
-  <script src="main.js" defer></script>
+  <title>THE WEATHER SLOTH</title>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <div id="loadOverlay" style="background-color:rgb(255, 255, 255); position:absolute; top:0px; left:0px; width:100%; height:100%; z-index:2000;"></div>
+  <script src="main.js" defer></script>
 </head>
 
 <body>
   <header>
-    <h1>What's the Weather Like In...</h1>
     <div class='searchContainer'>
-      <input class='search' required type='text' placeholder="City name" minlength=3 maxlength=50>
-      <select name='unit'>
-        <option required value='metric'>°C</option>
-        <option value='imperial'>°F</option>
-      </select>
-      <button class='search'>Go!</button>
+      <div class='searchBorder'>
+        <input class='search' required type='text' placeholder="City name" minlength=3 maxlength=50>
+        <!-- <select name='unit'> -->
+          <!-- <option required value='metric'>°C</option>
+          <option value='imperial'>°F</option> -->
+          <label class='radioContainer' title='Celsius' id='left'>
+            <input type='radio' class='radioUnit' id='left' name='unit' value='metric'>°C</option>
+          </label>
+          <label class='radioContainer'  title='Fahrenheit' id='right'>
+            <input type='radio' class='radioUnit' id='right' name='unit' value='imperial'>°F</option>
+          </label>
+        <!-- </select> -->
+        <img src='./searchIcon.png', title='Search', class='searchIcon'>
+       
+      </div>
     </div>
 
+    <h1 title='The Weather Sloth'>THE WEATHER SLOTH</h1>
+    <div class='motto'>Your daily forecast... with sloths</div>
   </header>
-
-  <!-- <main>
-    <div class='locationContainer'>
-      <div class='nameContainer'>
-        <span class='city'>Paris</span>
-        <span class='country'>France</span>
-      </div>
-      <div class='sunContainer'>
-        <span class='sun' id='rise'>7h30</span>
-        <span class='sun' id='set'>20h15</span>
-      </div>
-    </div>
-
-    <div class='timestampsCarrousel'>
-      <div class='timestampContainer'>
-        <div class='primaryDataContainer'>
-          <span class='primary' id='timestamp'>9h</span>
-          <span class='primary' id='weather'>Rain</span>
-          <span class='primary' id='temp'>26°C</span>
-        </div>
-
-        <div class='secondaryDataContainer'>
-          <span class='secondary' id='feelsLike'>32°C</span>
-          <span class='secondary' id='humidity'>92%</span>
-          <span class='secondary' id='windSpeed'>5km/h</span>
-        </div>
-      </div>
-    </div>
-  </main> -->
 
   <main>
     <div class='locationContainer'>
+      <div id='loaderLoc' class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
       <div class='nameContainer'>
-        <span class='city'></span>
-        <span class='country'></span>
+        <span class='city' title='Current city'></span>
+        <span class='country' title='Current country'></span>
       </div>
-      <div class='sunContainer'>
-        <span class='sun' id='rise'></span>
-        <span class='sun' id='set'></span>
+      <div class=locationInfo>
+        <div class='curWeatherContainer'>
+          <span class='curTemp' title='Current temperature'></span>
+          <img class='curWeather' title='Current weather' src='data:,' alt>
+        </div>
+        <div class='sunContainer'>
+          <div class='sunIcons'>
+            <img src='./sunrise.png' title='Sunrise'>
+            <img src='./sunset.png' title='Sunset'>
+          </div>
+          <div class='sunTimes'>
+            <span class='sun' title='Sunrise' id='rise'></span>
+            <span class='sun' title='Sunset' id='set'></span>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class='timestampsCarrousel'>
-      <div class='timestamp'>
-        <div class='primaryDataContainer'>
-          <span class='primary' id='timestamp'></span>
-          <span class='primary' id='weather'></span>
-          <span class='primary' id='temp'></span>
-        </div>
+    <figure class='gifContainer'>
+      <div id='loaderGif' class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+      <img class='gif' src='./error.jpg'>
+      <figcaption class='imgDetail'>Photo by <a href="https://unsplash.com/@drobo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Boris Drobnič</a> on <a href="https://unsplash.com/s/photos/sloth?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></figcaption>
+    </figure>
 
-        <div class='secondaryDataContainer'>
-          <span class='secondary' id='feelsLike'></span>
-          <span class='secondary' id='humidity'></span>
-          <span class='secondary' id='windSpeed'></span>
+    
+    <div class='carrouselContainer'>
+      <div class='btn' id='prev' title='Previous'>&#10094;</div>
+     
+      <div class='timestampsCarrousel'>
+        <div class='timestampContainer'>
+          <div class='primaryDataContainer'>
+            <span class='primary' id='timestamp'></span>
+            <div class='tsWeatherContainer'>
+              <span class='primary' id='temp'></span>
+              <img class='primary' id='weather'>
+            </div>
+          </div>
+
+          <div class='secondaryDataContainer'>
+            <span class='secondary' id='feelsLikeIcon' title='Feels like'></span>
+            <span class='secondary' id='feelsLike'  title='Feels like'></span>
+            <img src='./drop.png' id='humidityIcon' title='Humidity'>
+            <span class='secondary' id='humidity' title='Humidity'></span>
+            <img src='./wind.png' id='windIcon' title='Wind'>
+            <span class='secondary' id='windSpeed' title='Wind speed'></span>
+          </div>
         </div>
       </div>
+
+      <div class='btn' id='next' title='Next'>&#10095;</div>
     </div>
   </main>
 
   <footer>
-    <div>Built by <a href="https://github.com/42esoulard">esoulard</a></div>
+    <div>Built by <a href="https://github.com/42esoulard">esoulard</a> ©2021</div>
+    <div class='flaticon'>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    <a href='https://giphy.com/'><img class='giphyIcon' src='./giphy.png'></a>
   </footer>
 </body>
 </html>

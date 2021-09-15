@@ -118,7 +118,9 @@ touch src/style.css \
 body, html {
   padding: 0px;
   margin:0px;
-  min-height:100%;
+  min-height:600px;
+  height:100%;
+  min-width:350px;
 }
 
 h1 {
